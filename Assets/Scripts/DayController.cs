@@ -64,8 +64,9 @@ public class DayController : MonoBehaviour
             yield return new WaitForSeconds(2.3f);
             subtitle.text = "";
             task.text = "Зайдите в компютер и посмотрите заказы на почте";
-            bool inpc = monitorCanvas.transform.parent.parent.GetChild(1).GetComponent<PCController>().isInMail;
-            yield return new WaitUntil(() => inpc == true);
+
+            bool inmail = monitorCanvas.transform.parent.parent.GetChild(1).GetComponent<PCController>().isInMail;
+            yield return new WaitUntil(() => inmail == true);
             subtitle.text = "О, папа что то написал!";
             task.text = "";
             source.PlayOneShot(guideAudioClips[5], source.volume);

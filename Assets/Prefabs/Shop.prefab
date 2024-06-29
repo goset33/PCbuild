@@ -193,7 +193,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 78.35, y: 98.44}
-  m_Spacing: {x: -27, y: -48}
+  m_Spacing: {x: -25, y: -36}
   m_Constraint: 0
   m_ConstraintCount: 4
 --- !u!114 &5040206681520906075
