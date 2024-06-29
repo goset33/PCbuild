@@ -10,7 +10,7 @@ public class MailController : MonoBehaviour
     public TextMeshProUGUI mailText;
     public UnityEvent taskAccepted;
 
-    public string[] videocardsNames, processorNames, hardDiskNames, coolerNames, operativeNames, corpseNames;
+    public string[] videocardsNames, processorNames, hardDiskNames, coolerNames, operativeNames, plateNames;
 
     [Space]
     [TextArea(3, 10)]
@@ -47,7 +47,7 @@ public class MailController : MonoBehaviour
             }
             if (choosedVariation.Contains("|"))
             {
-                choosedVariation.Replace("|", corpseNames[Random.Range(0, corpseNames.Length)]);
+                choosedVariation.Replace("|", plateNames[Random.Range(0, plateNames.Length)]);
             }
         }
         

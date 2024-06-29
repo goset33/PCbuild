@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class ShopCard : MonoBehaviour
 {
     public CardInfoObject cardInfo;
-    public Image icon;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI costText;
 
@@ -18,7 +17,6 @@ public class ShopCard : MonoBehaviour
         {
             costText.text = cardInfo.cost.ToString();
             nameText.text = cardInfo.name.ToString();
-            icon.sprite = cardInfo.sprite;
         }
     }
 

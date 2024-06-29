@@ -12,6 +12,7 @@ public class DayController : MonoBehaviour
     public TextMeshProUGUI task;
 
     public GameObject monitorCanvas;
+    public MailController mailController;
 
     [Space]
     public AudioSource source;
@@ -21,6 +22,8 @@ public class DayController : MonoBehaviour
 
     private void Start()
     {
+        mailController.taskAccepted.AddListener(AcceptTask);
+        monitorCanvas.transform.parent.parent.GetChild(1).GetComponent<PCController>().isInMail.AddListener(AcceptTask);
         StartCoroutine(StartDay());
     }
 
@@ -64,12 +67,35 @@ public class DayController : MonoBehaviour
             yield return new WaitForSeconds(2.3f);
             subtitle.text = "";
             task.text = "Зайдите в компютер и посмотрите заказы на почте";
-
-            bool inmail = monitorCanvas.transform.parent.parent.GetChild(1).GetComponent<PCController>().isInMail;
-            yield return new WaitUntil(() => inmail == true);
-            subtitle.text = "О, папа что то написал!";
-            task.text = "";
-            source.PlayOneShot(guideAudioClips[5], source.volume);
         }
+    }
+
+    public void AcceptTask()
+    {
+        if (day == 0)
+        {
+            if (task.text.Equals("Зайдите в компютер и посмотрите заказы на почте"))
+            {
+                subtitle.text = "О, папа что то прислал!";
+                task.text = "";
+                source.PlayOneShot(guideAudioClips[5], source.volume);
+            }
+            else if (subtitle.text.Equals("О, папа что то прислал!")) 
+            {
+                StartCoroutine(CoroutineAcceptTask());
+            }
+        }
+    }
+
+    IEnumerator CoroutineAcceptTask()
+    {
+        subtitle.text = "Ух! Ну держитесь! Я сейчас вам такой комп соберу!";
+        source.PlayOneShot(guideAudioClips[6], source.volume);
+        yield return new WaitForSeconds(4.7f);
+        subtitle.text = "Так, для начала мне нужно заказать все детали из списка";
+        source.PlayOneShot(guideAudioClips[7], source.volume);
+        yield return new WaitForSeconds(3.3f);
+        subtitle.text = "";
+        task.text = "Закажите все компоненты";
     }
 }

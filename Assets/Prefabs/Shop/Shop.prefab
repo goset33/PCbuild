@@ -170,7 +170,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00061035156}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -84.630005}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2617488608568850666
 MonoBehaviour:
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 78.35, y: 98.44}
-  m_Spacing: {x: -25, y: -36}
+  m_Spacing: {x: -25, y: -60}
   m_Constraint: 0
   m_ConstraintCount: 4
 --- !u!114 &5040206681520906075
@@ -224,6 +224,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopCards: []
   shopCardPrefab: {fileID: 4589151311752214037, guid: 7883b80e93a0de841a03118fdb83b26a, type: 3}
+  uiController: {fileID: 0}
+  CardInfo: {fileID: 11400000, guid: 37f807332a9114c4aac7a540e961ee57, type: 2}
+  pcController: {fileID: 0}
+  OnBuy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3523299879759198889
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1517645722777531229
 RectTransform:
   m_ObjectHideFlags: 0
@@ -467,10 +473,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PCController, Assembly-CSharp
-        m_MethodName: OnBackToMainWindow
+        m_MethodName: OnMainButtonPressed
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3523299879759198889}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

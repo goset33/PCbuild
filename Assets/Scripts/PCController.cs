@@ -14,8 +14,7 @@ public class PCController : MonoBehaviour
 
     private bool isPlayerInTrigger;
     private bool isInPC;
-    [HideInInspector]
-    public bool isInMail;
+    public UnityEvent isInMail;
 
     private void Update()
     {
@@ -79,7 +78,7 @@ public class PCController : MonoBehaviour
             Window.SetActive(true);
             if (Window.name.Equals("Mail"))
             {
-                isInMail = true;
+                isInMail.Invoke();
             }
         }
         else
@@ -87,7 +86,6 @@ public class PCController : MonoBehaviour
             ShopWindow.SetActive(false);
             MailWindow.SetActive(false);
             Window.SetActive(true);
-            isInMail = false;
         }
     }
 

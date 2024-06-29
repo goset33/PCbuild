@@ -22,8 +22,6 @@ public class UIController : MonoBehaviour
     {
         timeText.text = hours + ":0" + minutes;
 
-        cash = PlayerPrefs.GetInt("Cash");
-        cashText.text = cash.ToString();
         PlayerPrefs.SetInt("Cash", 20);
         OnCashValueChanged();
     }
