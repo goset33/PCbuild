@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Camera cam;
-    private Interaction _interactObject;
+    private Wire _interactObject;
     [SerializeField] LayerMask layerMask;
 
     void Update()
@@ -42,9 +42,9 @@ public class Player : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.GetComponent<Interaction>() != null)
+                if (hit.collider.gameObject.GetComponent<Wire>() != null)
                 {
-                    _interactObject = hit.collider.gameObject.GetComponent<Interaction>();
+                    _interactObject = hit.collider.gameObject.GetComponent<Wire>();
                     _interactObject.SetDrag(true);
                 }
             }

@@ -22,16 +22,8 @@ public class ShopCard : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        //_button = GetComponentInChildren<Button>();
-        //_button.onClick.AddListener(Buy);
-        
-    }
-
     public void Buy()
     {
-        container.OnBuy.Invoke(cardInfo.cost);
         container.Buy(cardInfo, gameObject);
     }
 }

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.PlayerSettings;
 
-public class Interaction : MonoBehaviour
+
+public class Wire : MonoBehaviour
 {
     private bool _IsDraged = false;
 

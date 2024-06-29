@@ -95,6 +95,5 @@ public class PCController : MonoBehaviour
     {
         yield return new WaitForSeconds(waitSeconds);
         Instantiate(gameObject, new Vector3(0, 0, 0), new Quaternion());
-        Debug.Log("Delivered");
     }
 }

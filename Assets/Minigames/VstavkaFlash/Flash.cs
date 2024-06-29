@@ -102,7 +102,7 @@ public class Flash : MonoBehaviour, IDragged
         yield return new WaitForSeconds(Time.deltaTime);
         currentDuration += Time.deltaTime;
         StartCoroutine(TimerMove(currentDuration, inSeconds, currentPos, targetRot, startRot));
-        
+        yield return null;
     }
     
 }

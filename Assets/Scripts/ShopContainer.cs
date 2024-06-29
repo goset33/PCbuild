@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
+
 
 public class ShopContainer : MonoBehaviour
 {
@@ -11,11 +9,12 @@ public class ShopContainer : MonoBehaviour
     public UIController uiController;
     public CardInfoObject CardInfo;
     public PCController pcController;
-    public UnityEvent<int> OnBuy;
+
 
     private void Start()
     {
         TestCards();
+        //OnBuy.AddListener(Buy);
     }
     public void AddCard(CardInfoObject cardInfo)
     {
@@ -24,7 +23,6 @@ public class ShopContainer : MonoBehaviour
         ShopCard shopCard = card.GetComponent<ShopCard>();
         shopCard.cardInfo = cardInfo;
         shopCard.container = this;
-        shopCard.Start();
 
     }
 
