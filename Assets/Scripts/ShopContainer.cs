@@ -7,6 +7,11 @@ public class ShopContainer : MonoBehaviour
     public List<GameObject> shopCards = new List<GameObject>();
     public GameObject shopCardPrefab;
 
+
+    private void Start()
+    {
+        TestCards();
+    }
     public void AddCard(string text, int coin, Sprite sprite)
     {
         GameObject card = Instantiate(shopCardPrefab, transform);
