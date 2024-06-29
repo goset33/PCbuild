@@ -19,13 +19,11 @@ public class UIController : MonoBehaviour
     [Header("Cash")]
     public TextMeshProUGUI cashText;
     public int cash;
-    //public PCController pcController;
 
     private void Awake()
     {
         timeText.text = hours + ":0" + minutes;
 
-        //pcController.onComponentBuy.AddListener(OnCashValueChanged);
         cash = PlayerPrefs.GetInt("Cash");
         cashText.text = cash.ToString();
     }

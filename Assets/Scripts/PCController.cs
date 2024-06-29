@@ -14,7 +14,8 @@ public class PCController : MonoBehaviour
 
     private bool isPlayerInTrigger;
     private bool isInPC;
-    //public UnityEvent onComponentBuy;
+    [HideInInspector]
+    public bool isInMail;
 
     private void Update()
     {
@@ -72,18 +73,21 @@ public class PCController : MonoBehaviour
 
     public void OnMainButtonPressed(GameObject Window)
     {
-        MainWindow.SetActive(false);
-        Window.SetActive(true);
+        if (!Window.name.Equals("Main"))
+        {
+            MainWindow.SetActive(false);
+            Window.SetActive(true);
+            if (Window.name.Equals("Mail"))
+            {
+                isInMail = true;
+            }
+        }
+        else
+        {
+            ShopWindow.SetActive(false);
+            MailWindow.SetActive(false);
+            Window.SetActive(true);
+            isInMail = false;
+        }
     }
-
-    //public void OnBuyButtonPressed(ShopCardInfo shopCard)
-    //{
-    //    if (PlayerPrefs.GetInt("Cash") >= shopCard.componentCost)
-    //    {
-    //        int newBalance = PlayerPrefs.GetInt("Cash") - shopCard.componentCost;
-    //        PlayerPrefs.SetInt("Cash", newBalance);
-    //        onComponentBuy.Invoke();
-    //        print("Успешно куплено!");
-    //    }
-    //}
 }
