@@ -14,7 +14,7 @@ public class PCController : MonoBehaviour
 
     private bool isPlayerInTrigger;
     private bool isInPC;
-    public UnityEvent onComponentBuy;
+    //public UnityEvent onComponentBuy;
 
     private void Update()
     {
@@ -76,14 +76,14 @@ public class PCController : MonoBehaviour
         Window.SetActive(true);
     }
 
-    public void OnBuyButtonPressed(ShopCardInfo shopCard)
-    {
-        if (PlayerPrefs.GetInt("Cash") >= shopCard.componentCost)
-        {
-            int newBalance = PlayerPrefs.GetInt("Cash") - shopCard.componentCost;
-            PlayerPrefs.SetInt("Cash", newBalance);
-            onComponentBuy.Invoke();
-            print("Успешно куплено!");
-        }
-    }
+    //public void OnBuyButtonPressed(ShopCardInfo shopCard)
+    //{
+    //    if (PlayerPrefs.GetInt("Cash") >= shopCard.componentCost)
+    //    {
+    //        int newBalance = PlayerPrefs.GetInt("Cash") - shopCard.componentCost;
+    //        PlayerPrefs.SetInt("Cash", newBalance);
+    //        onComponentBuy.Invoke();
+    //        print("Успешно куплено!");
+    //    }
+    //}
 }
