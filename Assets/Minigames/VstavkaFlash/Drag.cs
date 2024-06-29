@@ -35,7 +35,15 @@ public class Drag : MonoBehaviour
                 {
                     if (draggedObject.CanDragged())
                     {
-                        _interactObject = hit.collider.gameObject;
+                        Flash flash = hit.collider.GetComponent<Flash>();
+                        if(flash.isDirtyConnected && !flash.isConnected)
+                        {
+                            flash.StartReturnToStartPos();
+                            flash.isDirtyConnected = false;
+                            flash.isConnected = false;
+                        }
+                        else
+                            _interactObject = hit.collider.gameObject;
                     }
                 }
             }
@@ -62,15 +70,19 @@ public class Drag : MonoBehaviour
             if(blocking)
             {
                 Flash flash = _interactObject.GetComponent<Flash>();
-                if(flash.countChangeRotation >= flash.maxCountChangeRotation)
+                if (flash.countChangeRotation >= flash.maxCountChangeRotation)
                 {
                     _interactObject.transform.position = hit.collider.transform.GetChild(0).transform.position;
+                    flash.isConnected = true;
+                    flash.isDirtyConnected = false;
+                    flash.canDragged = false;
                     _interactObject = null;
                 }
                 else
                 {
+                    _interactObject.transform.position = hit.collider.transform.GetChild(0).transform.position;
+                    flash.isDirtyConnected = true;
                     _interactObject = null;
-                    flash.StartReturnToStartPos();
                 }
                 
             }

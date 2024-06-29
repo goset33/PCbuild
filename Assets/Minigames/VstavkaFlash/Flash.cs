@@ -17,6 +17,9 @@ public class Flash : MonoBehaviour, IDragged
 
     public UnityEvent<float> OnChangeRotation;
 
+    [HideInInspector] public bool isDirtyConnected = false;
+    [HideInInspector] public bool isConnected = false;
+
     private Quaternion _startRot;
     private Vector3 _startPos;
     public bool TestBool = false;
@@ -38,13 +41,6 @@ public class Flash : MonoBehaviour, IDragged
 
     private void Update()
     {
-        
-            
-            if(TestBool)
-        {
-            TestBool = false;
-            StartCoroutine(ReturnToStartPos(secondForReturnToStart));
-        }
     }
 
     public void ChangeRotation()
@@ -57,15 +53,14 @@ public class Flash : MonoBehaviour, IDragged
             _targetRotEuler = 180;
             countChangeRotation++;
             OnChangeRotation.Invoke(_targetRotEuler);
-            //StartCoroutine(DisableDrag());
 
         }
-        else// if (angle > 178)
+        else
         {
             _targetRotEuler = 0;
             countChangeRotation++;
             OnChangeRotation.Invoke(_targetRotEuler);
-            //..StartCoroutine(DisableDrag());
+
         }
         
     }

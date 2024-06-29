@@ -496,6 +496,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2214694077118840812, guid: 2b338c8a02bca364a83ed21713c79072, type: 3}
+      propertyPath: maxCountChangeRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214694077118840812, guid: 2b338c8a02bca364a83ed21713c79072, type: 3}
       propertyPath: secondForReturnToStart
       value: 0.85
       objectReference: {fileID: 0}

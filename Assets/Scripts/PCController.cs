@@ -90,4 +90,11 @@ public class PCController : MonoBehaviour
             isInMail = false;
         }
     }
+
+    public IEnumerator Delivery(GameObject gameObject, int waitSeconds)
+    {
+        yield return new WaitForSeconds(waitSeconds);
+        Instantiate(gameObject, new Vector3(0, 0, 0), new Quaternion());
+        Debug.Log("Delivered");
+    }
 }

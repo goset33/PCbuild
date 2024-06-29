@@ -26,6 +26,8 @@ public class UIController : MonoBehaviour
 
         cash = PlayerPrefs.GetInt("Cash");
         cashText.text = cash.ToString();
+        PlayerPrefs.SetInt("Cash", 20);
+        OnCashValueChanged();
     }
 
     private void Update()
