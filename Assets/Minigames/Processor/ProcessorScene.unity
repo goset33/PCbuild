@@ -513,7 +513,7 @@ MonoBehaviour:
   cam: {fileID: 238218898}
   speed: 10
   range: 0.45
-  _maxErrors: 4
+  _maxErrors: 5
   _currentErrors: 0
   _posForWin: {fileID: 1894468414}
   OnError:

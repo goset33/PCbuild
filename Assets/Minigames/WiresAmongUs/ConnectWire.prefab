@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 931287550417575290}
   - component: {fileID: 6657337523098931727}
   - component: {fileID: 2794913475386343175}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: ConnectWire
   m_TagString: Connected
   m_Icon: {fileID: 0}
