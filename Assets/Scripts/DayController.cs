@@ -9,6 +9,10 @@ public class DayController : MonoBehaviour
 {
     public Image Dark;
     public TextMeshProUGUI subtitle;
+    public TextMeshProUGUI task;
+
+    public GameObject monitorCanvas;
+
     [Space]
     public AudioSource source;
     public AudioClip[] guideAudioClips;
@@ -52,11 +56,14 @@ public class DayController : MonoBehaviour
             subtitle.text = "Собирать компютеры на заказ!";
             source.PlayOneShot(guideAudioClips[2], source.volume);
             yield return new WaitForSeconds(2.5f);
-            subtitle.text = "Пора приступать к работе";
+            subtitle.text = "Чтож, пора приступать к работе";
             source.PlayOneShot(guideAudioClips[3], source.volume);
             yield return new WaitForSeconds(2.5f);
             subtitle.text = "Так, нужно по почте посмотреть";
             source.PlayOneShot(guideAudioClips[4], source.volume);
+            yield return new WaitForSeconds(2.3f);
+            subtitle.text = "";
+            task.text = "Зайдите в компютер и посмотрите зааказы на почте";
             
         }
     }
