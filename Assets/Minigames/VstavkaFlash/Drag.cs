@@ -1,6 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+public interface IDragged
+{
+    bool CanDragged();
+}
+
+
 public class Drag : MonoBehaviour
 {
 
@@ -9,6 +15,8 @@ public class Drag : MonoBehaviour
 
     // Update is called once per frame
     private Camera cam;
+
+
 
     private void Start()
     {
@@ -23,9 +31,12 @@ public class Drag : MonoBehaviour
             bool blocking = Physics.Raycast(ray, out hit);
             if (blocking)
             {
-                if (hit.collider.CompareTag("Flash"))
+                if (hit.collider.TryGetComponent(out IDragged draggedObject))
                 {
-                    _interactObject = hit.collider.gameObject;
+                    if (draggedObject.CanDragged())
+                    {
+                        _interactObject = hit.collider.gameObject;
+                    }
                 }
             }
         }
@@ -50,8 +61,18 @@ public class Drag : MonoBehaviour
             bool blocking = Physics.Raycast(ray, out hit, 1000.0f, connectedMask);
             if(blocking)
             {
-                _interactObject.transform.position = hit.collider.transform.GetChild(0).transform.position;
-                _interactObject = null;
+                Flash flash = _interactObject.GetComponent<Flash>();
+                if(flash.countChangeRotation >= flash.maxCountChangeRotation)
+                {
+                    _interactObject.transform.position = hit.collider.transform.GetChild(0).transform.position;
+                    _interactObject = null;
+                }
+                else
+                {
+                    _interactObject = null;
+                    flash.StartReturnToStartPos();
+                }
+                
             }
         }
     }

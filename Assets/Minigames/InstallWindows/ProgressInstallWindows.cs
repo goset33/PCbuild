@@ -23,7 +23,7 @@ public class ProgressInstallWindows : MonoBehaviour
 
     private void Start()
     {
-        
+        StartGame();
     }
 
     public void StartGame()
