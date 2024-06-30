@@ -30,11 +30,8 @@ public class DayController : MonoBehaviour
     IEnumerator StartDay()
     {
         yield return new WaitForSeconds(0.3f);
-        if (PlayerPrefs.HasKey("Day"))
-        {
-            day = PlayerPrefs.GetInt("Day");
-        }
-        else
+        day = PlayerPrefs.GetInt("Day");
+        if (day == 0)
         {
             Dark.transform.parent.transform.GetChild(1).gameObject.SetActive(false);
         }

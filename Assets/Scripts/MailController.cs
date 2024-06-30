@@ -15,6 +15,20 @@ public class MailController : MonoBehaviour
     [Space]
     [TextArea(3, 10)]
     public string[] textVariations;
+    [TextArea(3, 10)]
+    public string guideText;
+
+    private void Awake()
+    {
+        if (PlayerPrefs.GetInt("Day") == 0)
+        {
+            mailText.text = guideText;
+        }
+        else
+        {
+            CreateTask();
+        }
+    }
 
     public void CreateTask()
     {
@@ -61,7 +75,10 @@ public class MailController : MonoBehaviour
 
     public void Cancel()
     {
-        StartCoroutine(CancelCorutine());
+        if (PlayerPrefs.GetInt("Day") !=  0)
+        {
+            StartCoroutine(CancelCorutine());
+        }
     }
 
     IEnumerator CancelCorutine()

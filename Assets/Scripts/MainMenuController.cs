@@ -30,9 +30,10 @@ public class MainMenuController : MonoBehaviour
 
     public void OnButtonPressed(int index)
     {
-        if (!PlayerPrefs.HasKey("Cash"))
+        if (!PlayerPrefs.HasKey("Cash") && index == 0)
         {
             PlayerPrefs.SetInt("Cash", 1000);
+            PlayerPrefs.SetInt("Day", 0);
         }
         StartCoroutine(buttonPressed(index));
     }
@@ -60,6 +61,9 @@ public class MainMenuController : MonoBehaviour
         }
         else if (numButton == 3)
         {
+            transform.GetChild(1).GetComponent<TextMeshProUGUI>().DOFade(0f, 1f);
+            transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().DOFade(0f, 1f);
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("MainMenu");
         }
     }
