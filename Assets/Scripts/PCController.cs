@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class PCController : MonoBehaviour
 {
+    public MeshCollider walls;
     public GameObject box;
+    public Transform boxSpawnPos;
 
     public Transform player;
     public GameObject monitorCam;
@@ -94,7 +96,15 @@ public class PCController : MonoBehaviour
     public IEnumerator Delivery(GameObject gameObject, int waitSeconds)
     {
         yield return new WaitForSeconds(waitSeconds);
-        GameObject newBox = Instantiate(box, new Vector3(0, 2, 0), Quaternion.identity);
+        GameObject newBox = Instantiate(box, boxSpawnPos.position, Quaternion.identity);
+        newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        walls.enabled = false;
+        Physics.IgnoreLayerCollision(newBox.layer, newBox.layer, true);
+        newBox.GetComponent<Rigidbody>().AddForce(-transform.forward * 17f, ForceMode.Impulse);
         newBox.GetComponent<OpenBoxer>().componentInBox = gameObject;
+        yield return new WaitForSeconds(0.5f);
+        walls.enabled = true;
+        newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        Physics.IgnoreLayerCollision(newBox.layer, newBox.layer, false);
     }
 }
