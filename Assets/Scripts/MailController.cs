@@ -10,7 +10,7 @@ public class MailController : MonoBehaviour
     public TextMeshProUGUI mailText;
     public UnityEvent<string[]> taskAccepted;
 
-    public string[] acceptedComponents;
+    public string[] acceptedComponents = new string[7];
     public string[] videocardsNames, processorNames, hardDiskNames, coolerNames, operativeNames;
 
     [Space]
@@ -65,8 +65,9 @@ public class MailController : MonoBehaviour
                 acceptedComponents[5] = operativeNames[Random.Range(0, operativeNames.Length)];
                 choosedVariation.Replace("/", acceptedComponents[4]);
             }
+            acceptedComponents[2] = "NSI AM4 DDR4";
+            acceptedComponents[4] = "COMPUTER CASE";
         }
-        
         mailText.text = choosedVariation;
     }
 

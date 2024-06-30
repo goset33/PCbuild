@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preview: {fileID: 21300000, guid: b8d29a2af0d4ce042a7e4323fd8377ab, type: 3}
   name: RTX 3070
-  cost: 10
+  cost: 40000
   gameObjectForSpawn: {fileID: 2064794766179120199, guid: 5190d1d08c609ca4e9d558023cf0a3a5, type: 3}
   timeForDelivery: 4

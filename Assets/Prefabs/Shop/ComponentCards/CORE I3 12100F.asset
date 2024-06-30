@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preview: {fileID: 21300000, guid: ccdbaaf036205fe4ca19e9066f3d3dd3, type: 3}
   name: CORE I3 12100F
-  cost: 10
+  cost: 8000
   gameObjectForSpawn: {fileID: 2758724348868357803, guid: 1e3a9ce0dcf5c9f4ebf4cc5a8ce3a5b0, type: 3}
   timeForDelivery: 5

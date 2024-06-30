@@ -31,12 +31,6 @@ public class BuildPC : BaseMinigame
     public UnityEvent onMissedCasePC;
     public UnityEvent onCompleteBuild;
 
-    private void Start()
-    {
-        ReturnCurrentProgress();
-        Camera.SetupCurrent(Camera.main);
-    }
-
     public override void StartMinigame()
     {
         base.StartMinigame();
@@ -47,6 +41,7 @@ public class BuildPC : BaseMinigame
             Destroy(_currentComponent);
         }
        ReturnCurrentProgress();
+       Camera.SetupCurrent(Camera.main);
     }
 
     public override void EndMinigame()

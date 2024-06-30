@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preview: {fileID: 21300000, guid: 4c7102cc491a0d246bed453ff6705d0e, type: 3}
   name: NSI AM4 DDR4
-  cost: 10
+  cost: 10000
   gameObjectForSpawn: {fileID: 6704298632560668054, guid: 5b005a0eba85fbd4bafde760805b45c4, type: 3}
   timeForDelivery: 4
