@@ -37,11 +37,6 @@ public class BuildPC : BaseMinigame
     public UnityEvent onMissedCasePC;
     public UnityEvent onCompleteBuild;
 
-    private void Start()
-    {
-        StartMinigame();
-    }
-
     public override void StartMinigame()
     {
         base.StartMinigame();
@@ -70,7 +65,8 @@ public class BuildPC : BaseMinigame
     {
         if(_currentProgress <= componets.Count - 1)
         {
-            _currentComponent = Instantiate(componets[_currentProgress].spawnObject, startTransform);
+            _currentComponent = componets[_currentProgress].spawnObject;
+            _currentComponent.SetActive(true);
             UnityAction act = stringFunctionToUnityAction(this, componets[_currentProgress].methodOnConnected);
             if(_currentComponent.TryGetComponent(out BuildComponentPC compPc) )
             {
