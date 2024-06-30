@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,6 +26,7 @@ public class BuildPC : BaseMinigame
     public GameObject wiresMiniGame;
     public BaseMinigame FlashMinigame;
     public BaseMinigame windowsInstallMinigame;
+    public BaseMinigame packMiniGame;
 
     public AudioClip connectSound;
 
@@ -34,6 +36,11 @@ public class BuildPC : BaseMinigame
 
     public UnityEvent onMissedCasePC;
     public UnityEvent onCompleteBuild;
+
+    private void Start()
+    {
+        StartMinigame();
+    }
 
     public override void StartMinigame()
     {
@@ -46,6 +53,7 @@ public class BuildPC : BaseMinigame
         }
        ReturnCurrentProgress();
        Camera.SetupCurrent(Camera.main);
+       Camera.main.enabled = true;
     }
 
     public override void EndMinigame()
@@ -98,13 +106,20 @@ public class BuildPC : BaseMinigame
     public void StartFlashMinigame()
     {
         FlashMinigame.StartMinigame();
-        FlashMinigame.onEndMiniGame.AddListener(StartWindowsInstallMinigame);
+        FlashMinigame.onEndMiniGame.AddListener(StartPackingPC);
     }
 
     public void StartWindowsInstallMinigame()
     {
         windowsInstallMinigame.StartMinigame();
         windowsInstallMinigame.onEndMiniGame.AddListener(IncrementProgress);
+        
+    }
+
+    public void StartPackingPC()
+    {
+        packMiniGame.StartMinigame();
+        packMiniGame.onEndMiniGame.AddListener(EndMinigame);
     }
 
     UnityAction stringFunctionToUnityAction(object target, string functionName)

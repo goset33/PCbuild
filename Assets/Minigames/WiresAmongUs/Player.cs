@@ -83,13 +83,13 @@ public class Player : BaseMinigame
         {
             TargetPos.x = hit.point.x;
             TargetPos.y = hit.point.y;
-            TargetPos.z = _interactObject.transform.position.z;
+            TargetPos.z = hit.point.z;
         }
         else
         {
             TargetPos.x = ray.GetPoint(Distance).x;
             TargetPos.y = ray.GetPoint(Distance).y;
-            TargetPos.z = _interactObject.transform.position.z;
+            TargetPos.z = ray.GetPoint(Distance).z;
         }
         _interactObject.SetNewPosLinePoint(TargetPos);
     }

@@ -11,7 +11,7 @@ public class BaseMinigame : MonoBehaviour
 
     virtual public void StartMinigame()
     {
-        _prevCamera = Camera.current;
+        _prevCamera = Camera.main;
         
         _prevCamera.enabled = false;
         newCamera.enabled = true;

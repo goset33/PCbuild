@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Pack : MonoBehaviour
+public class Pack : BaseMinigame
 {
     [SerializeField] private Vector3 _targetRot;
     [SerializeField] private float _speed;
     [SerializeField] private GameObject gameObject;
 
     public UnityEvent OnComplete;
+    public UnityEvent onRotate;
     private int _currentCount;
     public void NextRot()
     {
@@ -31,6 +32,7 @@ public class Pack : MonoBehaviour
             
             yield return new WaitForSeconds(Time.deltaTime);
         }
+        onRotate.Invoke();
         yield return null;
     }
 }
