@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Paint
+  - Connected
+  - Core
+  - Videocard
+  - Cooler
+  - MotherBoard
+  - HardDrive
+  - CompCase
+  - RAM
+  - Box
   layers:
   - Default
   - TransparentFX

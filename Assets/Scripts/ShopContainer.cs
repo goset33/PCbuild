@@ -49,7 +49,6 @@ public class ShopContainer : MonoBehaviour
             PlayerPrefs.SetInt("Cash", PlayerPrefs.GetInt("Cash") - cardInfo.cost);
             uiController.OnCashValueChanged();
             pcController.StartCoroutine(pcController.Delivery(cardInfo.gameObjectForSpawn, cardInfo.timeForDelivery));
-            Destroy(destroyObject);
         }
     }
 

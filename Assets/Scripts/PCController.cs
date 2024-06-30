@@ -92,6 +92,6 @@ public class PCController : MonoBehaviour
     public IEnumerator Delivery(GameObject gameObject, int waitSeconds)
     {
         yield return new WaitForSeconds(waitSeconds);
-        Instantiate(gameObject, new Vector3(0, 0, 0), new Quaternion());
+        Instantiate(gameObject, new Vector3(0, 2, 0), Quaternion.identity);
     }
 }
