@@ -24,7 +24,7 @@ public class UIController : MonoBehaviour
     {
         timeText.text = hours + ":0" + minutes;
 
-        PlayerPrefs.SetInt("Cash", 20); // ! сдюкхрэ мю пекхге
+        PlayerPrefs.SetInt("Cash", 2000); // ! сдюкхрэ мю пекхге
         OnCashValueChanged();
     }
 

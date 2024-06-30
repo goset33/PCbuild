@@ -19,7 +19,7 @@ public class ShopContainer : MonoBehaviour
     }
     public void AddCard(CardInfoObject cardInfo)
     {
-        GameObject card = Instantiate(shopCardPrefab);
+        GameObject card = Instantiate(shopCardPrefab, transform);
         shopCards.Add(card);
         ShopCard shopCard = card.GetComponent<ShopCard>();
         shopCard.cardInfo = cardInfo;
