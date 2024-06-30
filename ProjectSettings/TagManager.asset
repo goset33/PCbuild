@@ -11,8 +11,9 @@ TagManager:
   - Cooler
   - MotherBoard
   - HardDrive
-  - CompCase
   - RAM
+  - Power
+  - ComputerCase
   - Box
   layers:
   - Default

@@ -67,6 +67,7 @@ public class MailController : MonoBehaviour
             }
             acceptedComponents[2] = "NSI AM4 DDR4";
             acceptedComponents[4] = "COMPUTER CASE";
+            acceptedComponents[7] = "POWER UNIT 500W";
         }
         mailText.text = choosedVariation;
     }

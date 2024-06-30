@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
       propertyPath: m_Name
-      value: Computer Case
+      value: COMPUTER CASE
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
+      propertyPath: m_TagString
+      value: ComputerCase
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67,7 +71,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9130356546412139740}
+      addedObject: {fileID: 250124460497429010}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6651343876429157705}
@@ -80,8 +84,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
   m_PrefabInstance: {fileID: 2265009346779375328}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &9130356546412139740
-MeshCollider:
+--- !u!65 &250124460497429010
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -98,10 +102,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 9c3924f9cd47be4499177019edc7addb, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.3157117, y: 2.29491, z: 0.99183846}
+  m_Center: {x: 0.19596851, y: 1.1945112, z: 0.2293911}
 --- !u!54 &6651343876429157705
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -65,7 +65,13 @@ PrefabInstance:
       addedObject: {fileID: 5312846387983223416}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5de1e58602daa6a4787b5a8de4a224e8, type: 3}
       insertIndex: -1
+      addedObject: {fileID: -949429882044128323}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5de1e58602daa6a4787b5a8de4a224e8, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2687728622116691116}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5de1e58602daa6a4787b5a8de4a224e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -480337290272903965}
   m_SourcePrefab: {fileID: 100100000, guid: 5de1e58602daa6a4787b5a8de4a224e8, type: 3}
 --- !u!1 &5321937843091418876 stripped
 GameObject:
@@ -93,6 +99,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0317508, y: 0.13252455, z: 0.7459775}
   m_Center: {x: 0, y: 0.06, z: -0.12}
+--- !u!54 &-949429882044128323
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5321937843091418876}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &2687728622116691116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +133,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5321937843091418876}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10dc17a15bdf5d847acb28a8aeb62ae4, type: 3}
   m_Name: 
@@ -111,3 +144,17 @@ MonoBehaviour:
   onConnected:
     m_PersistentCalls:
       m_Calls: []
+  ConnectSound: {fileID: 0}
+  audioSource: {fileID: 0}
+--- !u!114 &-480337290272903965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5321937843091418876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ff271a89fc1b84b8772e96538d8486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

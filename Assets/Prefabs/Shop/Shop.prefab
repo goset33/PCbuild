@@ -227,13 +227,14 @@ MonoBehaviour:
   uiController: {fileID: 0}
   CardInfo:
   - {fileID: 11400000, guid: c57aee986dc68534c94ddd4853578d81, type: 2}
+  - {fileID: 11400000, guid: f42bad9d920b67f4c8bca3373f71f3fc, type: 2}
+  - {fileID: 11400000, guid: cf02c6c26d6d6ab4293b4f946e7f361d, type: 2}
   - {fileID: 11400000, guid: 6cedb21e372e646498a90bba6c12e3ee, type: 2}
   - {fileID: 11400000, guid: 0b2b1f38cd5dbc843b344c875dea10f7, type: 2}
   - {fileID: 11400000, guid: 29d5953af4fb4a0499e44aee6fd59197, type: 2}
   - {fileID: 11400000, guid: 37f807332a9114c4aac7a540e961ee57, type: 2}
   - {fileID: 11400000, guid: ae1174dc93abb1244898f091ac74ac21, type: 2}
   - {fileID: 11400000, guid: dc1302f4255adc249941e04dda201d3f, type: 2}
-  - {fileID: 11400000, guid: f42bad9d920b67f4c8bca3373f71f3fc, type: 2}
   - {fileID: 11400000, guid: 6b0d7305807496841a332df3b8af8c9b, type: 2}
   - {fileID: 11400000, guid: 14256b0073f3dd14199ceabe0458b73a, type: 2}
   - {fileID: 11400000, guid: bf62f53622ec8604fa5370482843460e, type: 2}

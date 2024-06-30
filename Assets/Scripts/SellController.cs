@@ -64,6 +64,10 @@ public class SellController : MonoBehaviour
                 {
                     Components[6] = collider.gameObject;
                 }
+                if (collider.CompareTag("Power"))
+                {
+                    Components[7] = collider.gameObject;
+                }
             }
             if (hasBox)
             {

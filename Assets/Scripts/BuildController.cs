@@ -7,10 +7,12 @@ public class BuildController : MonoBehaviour
     public MailController mailController;
     public BuildPC buildPC;
 
+    public List<Collider> colliders;
+
     public bool isTaskAccepted;
 
     private string[] requriedNames;
-    private int counter;
+    public int counter;
 
     private void Awake()
     {
@@ -23,34 +25,103 @@ public class BuildController : MonoBehaviour
         requriedNames = i;
     }
 
-    void Update()
+
+
+    private void OnTriggerEnter(Collider other)
     {
         if (isTaskAccepted)
         {
-            Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale, Quaternion.identity);
-            foreach (Collider collider in colliders)
+            foreach (string requriedName in requriedNames)
             {
-                foreach (string requriedName in requriedNames)
+                other.gameObject.name = other.gameObject.name.Replace("(Clone)", "");
+                if (other.gameObject.name.Equals(requriedName))
                 {
-                    if (collider.gameObject.name == requriedName)
-                    {
-                        counter++;
-                    }
+                    colliders.Add(other);
+                    counter++;
                 }
             }
-            if (counter == 7)
+            if (counter == 8)
             {
                 foreach (Collider collider in colliders)
                 {
-                    for (int i = 0; i < buildPC.componets.Count; i++)
+                    if (collider.CompareTag("ComputerCase"))
                     {
-                        PCComponets prefab = buildPC.componets[i];
-                        prefab.spawnObject = collider.gameObject;
-
-                        buildPC.componets.Add(prefab);
-                        collider.gameObject.SetActive(false);               
+                        colliders.Remove(collider);
+                        Destroy(collider.gameObject);
+                        break;
                     }
                 }
+
+                for (int i = 0; i < colliders.Count; i++)
+                {
+                    buildPC.componets.Clear();
+                    PCComponets prefab = new PCComponets();
+                    for (int j = 0; j < 8; j++)
+                    {
+                        buildPC.componets.Add(prefab);
+                    }
+
+                    if (colliders[i].CompareTag("MotherBoard"))
+                    {
+                        prefab.spawnObject = colliders[i].gameObject;
+                        prefab.methodOnConnected = "IncrementProgress";
+                        buildPC.componets[0] = prefab;
+                    }
+                    if (colliders[i].CompareTag("Core"))
+                    {
+                        prefab.spawnObject = colliders[i].gameObject;
+                        prefab.methodOnConnected = "StartProcessorMiniGame";
+                        buildPC.componets[1] = prefab;
+                    }
+                    if (colliders[i].CompareTag("Cooler"))
+                    {
+                        prefab.spawnObject = colliders[i].gameObject;
+                        prefab.methodOnConnected = "IncrementProgress";
+                        buildPC.componets[2] = prefab;
+                    }
+                    if (colliders[i].CompareTag("Power"))
+                    {
+                        prefab.spawnObject = colliders[i].gameObject;
+                        prefab.methodOnConnected = "StartWiresMiniGame";
+                        buildPC.componets[3] = prefab;
+                    }
+                    if (colliders[i].CompareTag("Videocard"))
+                    {
+                        prefab.spawnObject = colliders[i].gameObject;
+                        prefab.methodOnConnected = "IncrementProgress";
+                        buildPC.componets[4] = prefab;
+                    }
+                    if (colliders[i].CompareTag("HardDrive"))
+                    {
+                        prefab.spawnObject = colliders[i].gameObject;
+                        prefab.methodOnConnected = "IncrementProgress";
+                        buildPC.componets[5] = prefab;
+                    }
+                    if (colliders[i].CompareTag("RAM"))
+                    {
+                        prefab.spawnObject = colliders[i].gameObject;
+                        prefab.methodOnConnected = "StartFlashMinigame";
+                        buildPC.componets[6] = prefab;
+                    }
+                    colliders[i].GetComponent<Rigidbody>().isKinematic = true;
+                    colliders[i].GetComponent<DragObject>().enabled = false;
+                    colliders[i].GetComponent<BuildComponentPC>().enabled = true;
+                    colliders[i].gameObject.SetActive(false);
+                }
+                buildPC.gameObject.SetActive(true);
+                buildPC.StartMinigame();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        foreach (string requriedName in requriedNames)
+        {
+            if (other.gameObject.name == requriedName)
+            {
+                colliders.Remove(other);
+                counter--;
             }
         }
     }

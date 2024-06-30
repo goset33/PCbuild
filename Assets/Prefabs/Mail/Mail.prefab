@@ -594,11 +594,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   acceptedComponents:
-  - GTX 1050 ti
   - CORE I3 12100F
+  - GTX 1050 ti
+  - NSI AM4 DDR4
   - Hard Drive 500GB
-  - LAMMAX 200T
+  - COMPUTER CASE
   - SuperX 8GB
+  - LAMMAX 200T
+  - POWER UNIT 500W
   videocardsNames:
   - GTX 1050 ti
   - GTX 1660 SUPER ti

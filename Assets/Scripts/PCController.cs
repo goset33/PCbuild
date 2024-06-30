@@ -10,6 +10,7 @@ public class PCController : MonoBehaviour
 
     public Transform player;
     public GameObject monitorCam;
+    public GameObject Dot;
 
     [Header("Windows")]
     public GameObject MainWindow;
@@ -49,6 +50,7 @@ public class PCController : MonoBehaviour
         isInPC = !isInPC;
         if (isInPC)
         {
+            Dot.SetActive(false);
             player.GetChild(2).gameObject.SetActive(false);
             player.GetComponent<FirstPersonMovement>().enabled = false;
             Cursor.visible = true;
@@ -64,6 +66,7 @@ public class PCController : MonoBehaviour
             ShopWindow.SetActive(false);
             MailWindow.SetActive(false);
 
+            Dot.SetActive(true);
             player.GetComponent<FirstPersonMovement>().enabled = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -97,7 +100,7 @@ public class PCController : MonoBehaviour
         yield return new WaitForSeconds(waitSeconds);
         GameObject newBox = Instantiate(box, boxSpawnPos.position, Quaternion.identity);
         newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        newBox.GetComponent<Rigidbody>().AddForce(-transform.forward * 17f, ForceMode.Impulse);
+        newBox.GetComponent<Rigidbody>().AddForce(-transform.forward * Random.Range(15f, 18f), ForceMode.Impulse);
         newBox.GetComponent<OpenBoxer>().componentInBox = gameObject;
         yield return new WaitForSeconds(0.5f);
         newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

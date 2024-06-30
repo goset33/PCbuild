@@ -14,7 +14,7 @@ public class Interactor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Ray ray = new Ray(transform.position, transform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, 3f))
+            if (Physics.Raycast(ray, out RaycastHit hit, 7f))
             {
                 if (hit.collider.gameObject.TryGetComponent(out IInteractable interactable))
                 {
