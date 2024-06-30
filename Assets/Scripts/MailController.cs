@@ -8,9 +8,10 @@ using UnityEngine.Events;
 public class MailController : MonoBehaviour
 {
     public TextMeshProUGUI mailText;
-    public UnityEvent taskAccepted;
+    public UnityEvent<string[]> taskAccepted;
 
-    public string[] videocardsNames, processorNames, hardDiskNames, coolerNames, operativeNames, plateNames;
+    public string[] acceptedComponents;
+    public string[] videocardsNames, processorNames, hardDiskNames, coolerNames, operativeNames;
 
     [Space]
     [TextArea(3, 10)]
@@ -41,27 +42,28 @@ public class MailController : MonoBehaviour
         {
             if (choosedVariation.Contains("="))
             {
-                choosedVariation.Replace("=", videocardsNames[Random.Range(0, videocardsNames.Length)]);
+                acceptedComponents[0] = videocardsNames[Random.Range(0, videocardsNames.Length)];
+                choosedVariation.Replace("=", acceptedComponents[0]);
             }
             if (choosedVariation.Contains("+"))
             {
-                choosedVariation.Replace("+", processorNames[Random.Range(0, processorNames.Length)]);
+                acceptedComponents[1] = processorNames[Random.Range(0, processorNames.Length)];
+                choosedVariation.Replace("+", acceptedComponents[1]);
             }
             if (choosedVariation.Contains("-"))
             {
-                choosedVariation.Replace("-", hardDiskNames[Random.Range(0, hardDiskNames.Length)]);
+                acceptedComponents[2] = hardDiskNames[Random.Range(0, hardDiskNames.Length)];
+                choosedVariation.Replace("-", acceptedComponents[2]);
             }
             if (choosedVariation.Contains("$"))
             {
-                choosedVariation.Replace("$", coolerNames[Random.Range(0, coolerNames.Length)]);
+                acceptedComponents[3] = coolerNames[Random.Range(0, coolerNames.Length)];
+                choosedVariation.Replace("$", acceptedComponents[3]);
             }
             if (choosedVariation.Contains("/"))
             {
-                choosedVariation.Replace("/", operativeNames[Random.Range(0, operativeNames.Length)]);
-            }
-            if (choosedVariation.Contains("|"))
-            {
-                choosedVariation.Replace("|", plateNames[Random.Range(0, plateNames.Length)]);
+                acceptedComponents[4] = operativeNames[Random.Range(0, operativeNames.Length)];
+                choosedVariation.Replace("/", acceptedComponents[4]);
             }
         }
         
@@ -70,7 +72,7 @@ public class MailController : MonoBehaviour
 
     public void Accept()
     {
-        taskAccepted?.Invoke();
+        taskAccepted?.Invoke(acceptedComponents);
     }
 
     public void Cancel()

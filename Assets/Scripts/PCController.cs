@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PCController : MonoBehaviour
 {
     public GameObject box;
+    public Transform boxSpawnPos;
 
     public Transform player;
     public GameObject monitorCam;
@@ -16,11 +17,11 @@ public class PCController : MonoBehaviour
 
     private bool isPlayerInTrigger;
     private bool isInPC;
-    public UnityEvent isInMail;
+    public UnityEvent<string[]> isInMail;
 
     private void Update()
     {
-        if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.Q))
         {
             OnComputerStart();
         }
@@ -80,7 +81,7 @@ public class PCController : MonoBehaviour
             Window.SetActive(true);
             if (Window.name.Equals("Mail"))
             {
-                isInMail.Invoke();
+                isInMail.Invoke(null);
             }
         }
         else
@@ -94,7 +95,11 @@ public class PCController : MonoBehaviour
     public IEnumerator Delivery(GameObject gameObject, int waitSeconds)
     {
         yield return new WaitForSeconds(waitSeconds);
-        GameObject newBox = Instantiate(box, new Vector3(0, 2, 0), Quaternion.identity);
+        GameObject newBox = Instantiate(box, boxSpawnPos.position, Quaternion.identity);
+        newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        newBox.GetComponent<Rigidbody>().AddForce(-transform.forward * 17f, ForceMode.Impulse);
         newBox.GetComponent<OpenBoxer>().componentInBox = gameObject;
+        yield return new WaitForSeconds(0.5f);
+        newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
     }
 }

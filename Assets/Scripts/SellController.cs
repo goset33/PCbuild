@@ -1,18 +1,29 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
 
 public class SellController : MonoBehaviour
 {
     public ShopContainer container;
     public UIController uiController;
+    public MailController mailController;
 
     [Space]
+    public AudioSource voice;
     public bool hasBox;
 
     public GameObject[] Components = new GameObject[7];
+    public string[] requaredComponents = new string[7];
+
+    public AudioClip[] good, bad;
+
+    private void Awake()
+    {
+        mailController.taskAccepted.AddListener(OnTaskAccepted);
+    }
+
+    public void OnTaskAccepted(string[] acceptComponents)
+    {
+        requaredComponents = acceptComponents;
+    }
 
     private void Update()
     {
@@ -58,24 +69,47 @@ public class SellController : MonoBehaviour
             if (hasBox)
             {
                 int price = 0;
+                bool isRight = true;
                 foreach (CardInfoObject cardInfo in container.CardInfo)
                 {
                     foreach (GameObject component in Components)
                     {
-                        if (component != null)
+                        foreach(string required in requaredComponents)
                         {
-                            component.name = component.name.Replace("(Clone)", ""); 
-                            if (cardInfo.name == component.name)
+                            if (component != null && required != null)
                             {
-                                price += Mathf.RoundToInt(cardInfo.cost + (cardInfo.cost * 0.2f));
-                                Destroy(component);
+                                component.name = component.name.Replace("(Clone)", ""); 
+                                if (cardInfo.name == component.name && cardInfo.name == required && isRight)
+                                {
+                                    price += Mathf.RoundToInt(cardInfo.cost + (cardInfo.cost * 0.2f));
+                                }
+                                else
+                                {
+                                    isRight = false;
+                                }
                             }
                         }
+                        Destroy(component);
                     }
                 }
-                PlayerPrefs.SetInt("Cash", PlayerPrefs.GetInt("Cash") + price);
-                uiController.OnCashValueChanged();
-                print(PlayerPrefs.GetInt("Cash"));
+
+                if (isRight)
+                {
+                    PlayerPrefs.SetInt("Cash", PlayerPrefs.GetInt("Cash") + price);
+                    uiController.OnCashValueChanged();
+                    print(PlayerPrefs.GetInt("Cash"));
+
+                    voice.PlayOneShot(good[Random.Range(0, good.Length)]);
+                }
+                else
+                {
+                    voice.PlayOneShot(bad[Random.Range(0, good.Length)]);
+                }
+
+                //foreach (GameObject component in Components)
+                //{
+                //    Destroy(component);
+                //}
             }
         }
     }

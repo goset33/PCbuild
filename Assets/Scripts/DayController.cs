@@ -67,11 +67,11 @@ public class DayController : MonoBehaviour
             source.PlayOneShot(guideAudioClips[4], source.volume);
             yield return new WaitForSeconds(2.3f);
             subtitle.text = "";
-            task.text = "Зайдите в компютер и посмотрите заказы на почте";
+            task.text = "Зайдите в компютер на Q и посмотрите заказы на почте";
         }
     }
 
-    public void AcceptTask()
+    public void AcceptTask(string[] i)
     {
         if (day == 0)
         {
@@ -107,7 +107,7 @@ public class DayController : MonoBehaviour
             componentCounter++;
             if (componentCounter == 6)
             {
-                task.text = "Распакуй запчасти и поставь всё на свой рабочий стол";
+                task.text = "Распакуй запчасти на E и поставь всё на свой рабочий стол";
                 subtitle.text = "Теперь нужно всё распаковать и поставить корпус на рабочий стол";
                 source.PlayOneShot(guideAudioClips[8], source.volume);
             }
