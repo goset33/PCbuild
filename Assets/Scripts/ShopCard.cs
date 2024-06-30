@@ -24,6 +24,6 @@ public class ShopCard : MonoBehaviour
 
     public void Buy()
     {
-        container.Buy(cardInfo, gameObject);
+        container.Buy(cardInfo);
     }
 }

@@ -13,6 +13,7 @@ public class DayController : MonoBehaviour
 
     public GameObject monitorCanvas;
     public MailController mailController;
+    public ShopContainer shopContainer;
 
     [Space]
     public AudioSource source;
@@ -20,10 +21,13 @@ public class DayController : MonoBehaviour
 
     private int day;
 
+    private int componentCounter;
+
     private void Start()
     {
         mailController.taskAccepted.AddListener(AcceptTask);
         monitorCanvas.transform.parent.parent.GetChild(1).GetComponent<PCController>().isInMail.AddListener(AcceptTask);
+        shopContainer.OnBuy.AddListener(OnBuyAllComponents);
         StartCoroutine(StartDay());
     }
 
@@ -94,5 +98,19 @@ public class DayController : MonoBehaviour
         yield return new WaitForSeconds(3.3f);
         subtitle.text = "";
         task.text = "Закажите все компоненты";
+    }
+
+    public void OnBuyAllComponents(CardInfoObject cardInfo)
+    {
+        if (cardInfo.name == "CORE I3 12100F" || cardInfo.name == "LAMMAX 200T" || cardInfo.name == "GTX 1050 ti")
+        {
+            componentCounter++;
+            if (componentCounter == 3)
+            {
+                task.text = "Распакуй запчасти и поставь все на свой рабочий стол";
+                subtitle.text = "Теперь нужно всё распаковать и поставить корпус на рабочий стол";
+                source.PlayOneShot(guideAudioClips[8], source.volume);
+            }
+        }
     }
 }

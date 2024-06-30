@@ -9,6 +9,12 @@ public class DragObject : MonoBehaviour
     private void OnMouseDown()
     {
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    private void OnMouseUp()
+    {
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 
     private void OnMouseDrag()

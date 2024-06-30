@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class ShopContainer : MonoBehaviour
@@ -9,16 +10,16 @@ public class ShopContainer : MonoBehaviour
     public UIController uiController;
     public CardInfoObject[] CardInfo;
     public PCController pcController;
+    public UnityEvent<CardInfoObject> OnBuy;
 
 
     private void Start()
     {
         GenerateCards();
-        //OnBuy.AddListener(Buy);
     }
     public void AddCard(CardInfoObject cardInfo)
     {
-        GameObject card = Instantiate(shopCardPrefab, transform);
+        GameObject card = Instantiate(shopCardPrefab);
         shopCards.Add(card);
         ShopCard shopCard = card.GetComponent<ShopCard>();
         shopCard.cardInfo = cardInfo;
@@ -41,7 +42,7 @@ public class ShopContainer : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
     }
-    public void Buy(CardInfoObject cardInfo, GameObject destroyObject)
+    public void Buy(CardInfoObject cardInfo)
     {
         
         if(PlayerPrefs.GetInt("Cash") >= cardInfo.cost)
@@ -49,6 +50,7 @@ public class ShopContainer : MonoBehaviour
             PlayerPrefs.SetInt("Cash", PlayerPrefs.GetInt("Cash") - cardInfo.cost);
             uiController.OnCashValueChanged();
             pcController.StartCoroutine(pcController.Delivery(cardInfo.gameObjectForSpawn, cardInfo.timeForDelivery));
+            OnBuy?.Invoke(cardInfo);
         }
     }
 
