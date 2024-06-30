@@ -25,8 +25,7 @@ public class DayController : MonoBehaviour
 
     private void Start()
     {
-        mailController.taskAccepted.AddListener(AcceptTask);
-        monitorCanvas.transform.parent.parent.GetChild(1).GetComponent<PCController>().isInMail.AddListener(AcceptTask);
+        //mailController.taskAccepted.AddListener(AcceptTask);
         shopContainer.OnBuy.AddListener(OnBuyAllComponents);
         StartCoroutine(StartDay());
     }
@@ -71,17 +70,19 @@ public class DayController : MonoBehaviour
         }
     }
 
+    // TODO: разделить функцию на две
     public void AcceptTask(string[] i)
     {
+        print(1);
         if (day == 0)
         {
-            if (task.text.Equals("Зайдите в компютер и посмотрите заказы на почте"))
+            if (task.text == "Зайдите в компютер и посмотрите заказы на почте")
             {
                 subtitle.text = "О, папа что то прислал!";
                 task.text = "";
                 source.PlayOneShot(guideAudioClips[5], source.volume);
             }
-            else if (subtitle.text.Equals("О, папа что то прислал!")) 
+            else if (subtitle.text == "О, папа что то прислал!")
             {
                 StartCoroutine(CoroutineAcceptTask());
             }
@@ -102,15 +103,31 @@ public class DayController : MonoBehaviour
 
     public void OnBuyAllComponents(CardInfoObject cardInfo)
     {
-        if (cardInfo.name == "CORE I3 12100F" || cardInfo.name == "LAMMAX 200T" || cardInfo.name == "GTX 1050 ti" || cardInfo.name == "USUS AM3 DDR3" || cardInfo.name == "SuperX 8GB" || cardInfo.name == "Hard Drive 500GB")
+        if (cardInfo.name == "CORE I3 12100F" || cardInfo.name == "LAMMAX 200T" || cardInfo.name == "GTX 1050 ti" || cardInfo.name == "USUS AM3 DDR3" || cardInfo.name == "SuperX 8GB" || cardInfo.name == "Hard Drive 500GB" || cardInfo.name == "COMPUTER CASE" || cardInfo.name == "POWER UNIT 500W")
         {
             componentCounter++;
-            if (componentCounter == 6)
+            if (componentCounter == 8)
             {
                 task.text = "Распакуй запчасти на E и поставь всё на свой рабочий стол";
                 subtitle.text = "Теперь нужно всё распаковать и поставить корпус на рабочий стол";
                 source.PlayOneShot(guideAudioClips[8], source.volume);
             }
         }
+    }
+
+    public void OnStartBuild()
+    {
+        task.text = "";
+        subtitle.text = "Теперь самое простое! Собрать его...";
+        source.PlayOneShot(guideAudioClips[9], source.volume);
+        StartCoroutine(CoroutineOnStartBuild());
+    }
+
+    IEnumerator CoroutineOnStartBuild()
+    {
+        yield return new WaitForSeconds(4.3f);
+        task.text = "Вставьте материнскую плату";
+        subtitle.text = "Для начала нужно вставить материнку";
+        source.PlayOneShot(guideAudioClips[10], source.volume);
     }
 }

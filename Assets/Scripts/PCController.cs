@@ -84,7 +84,7 @@ public class PCController : MonoBehaviour
             Window.SetActive(true);
             if (Window.name.Equals("Mail"))
             {
-                isInMail.Invoke(null);
+                isInMail.Invoke(new string[1]);
             }
         }
         else
