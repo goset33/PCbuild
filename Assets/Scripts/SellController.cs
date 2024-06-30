@@ -27,7 +27,7 @@ public class SellController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, Camera.main.transform.position) <= 3f)
+        if (Input.GetKeyDown(KeyCode.R) && Vector3.Distance(transform.position, Camera.main.transform.position) <= 3f)
         {
             print(1);
             Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale, Quaternion.identity);
@@ -76,17 +76,28 @@ public class SellController : MonoBehaviour
                     {
                         foreach(string required in requaredComponents)
                         {
-                            if (component != null && required != null)
+                            if (component != null)
                             {
-                                component.name = component.name.Replace("(Clone)", ""); 
-                                if (cardInfo.name == component.name && cardInfo.name == required && isRight)
+                                if (required != null)
                                 {
-                                    price += Mathf.RoundToInt(cardInfo.cost + (cardInfo.cost * 0.2f));
+                                    component.name = component.name.Replace("(Clone)", "");
+                                    if (cardInfo.name == component.name && cardInfo.name == required && isRight)
+                                    {
+                                        price += Mathf.RoundToInt(cardInfo.cost + (cardInfo.cost * 0.2f));
+                                    }
+                                    else
+                                    {
+                                        isRight = false;
+                                    }
                                 }
                                 else
                                 {
-                                    isRight = false;
+                                    price += Mathf.RoundToInt(cardInfo.cost + (cardInfo.cost * 0.2f));
                                 }
+                            }
+                            else
+                            {
+                                isRight = false;
                             }
                         }
                         Destroy(component);
@@ -104,12 +115,7 @@ public class SellController : MonoBehaviour
                 else
                 {
                     voice.PlayOneShot(bad[Random.Range(0, good.Length)]);
-                }
-
-                //foreach (GameObject component in Components)
-                //{
-                //    Destroy(component);
-                //}
+                }   
             }
         }
     }

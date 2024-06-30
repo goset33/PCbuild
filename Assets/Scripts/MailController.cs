@@ -42,27 +42,27 @@ public class MailController : MonoBehaviour
         {
             if (choosedVariation.Contains("="))
             {
-                acceptedComponents[0] = videocardsNames[Random.Range(0, videocardsNames.Length)];
+                acceptedComponents[1] = videocardsNames[Random.Range(0, videocardsNames.Length)];
                 choosedVariation.Replace("=", acceptedComponents[0]);
             }
             if (choosedVariation.Contains("+"))
             {
-                acceptedComponents[1] = processorNames[Random.Range(0, processorNames.Length)];
+                acceptedComponents[0] = processorNames[Random.Range(0, processorNames.Length)];
                 choosedVariation.Replace("+", acceptedComponents[1]);
             }
             if (choosedVariation.Contains("-"))
             {
-                acceptedComponents[2] = hardDiskNames[Random.Range(0, hardDiskNames.Length)];
+                acceptedComponents[3] = hardDiskNames[Random.Range(0, hardDiskNames.Length)];
                 choosedVariation.Replace("-", acceptedComponents[2]);
             }
             if (choosedVariation.Contains("$"))
             {
-                acceptedComponents[3] = coolerNames[Random.Range(0, coolerNames.Length)];
+                acceptedComponents[6] = coolerNames[Random.Range(0, coolerNames.Length)];
                 choosedVariation.Replace("$", acceptedComponents[3]);
             }
             if (choosedVariation.Contains("/"))
             {
-                acceptedComponents[4] = operativeNames[Random.Range(0, operativeNames.Length)];
+                acceptedComponents[5] = operativeNames[Random.Range(0, operativeNames.Length)];
                 choosedVariation.Replace("/", acceptedComponents[4]);
             }
         }
