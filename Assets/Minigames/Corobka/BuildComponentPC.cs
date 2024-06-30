@@ -17,6 +17,9 @@ public class BuildComponentPC : MonoBehaviour, IBuild
     public Vector3 draggedRotation;
     public int indexConnect;
     public UnityEvent onConnected;
+    public AudioClip ConnectSound;
+
+    public AudioSource audioSource;
 
     private Vector3 _startPos;
     private Vector3 _startRot;
@@ -25,6 +28,8 @@ public class BuildComponentPC : MonoBehaviour, IBuild
     {
         _startPos = transform.position;
         _startRot = transform.rotation.eulerAngles;
+
+
     }
 
     public void Dragged()
@@ -53,7 +58,7 @@ public class BuildComponentPC : MonoBehaviour, IBuild
         if(_connected)
         {
             onConnected.Invoke();
-
+            audioSource.Play();
         }
     }
 

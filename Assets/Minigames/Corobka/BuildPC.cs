@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,6 +24,9 @@ public class BuildPC : BaseMinigame
     public GameObject TermopastMingame;
     public GameObject wiresMiniGame;
     public BaseMinigame FlashMinigame;
+    public BaseMinigame windowsInstallMinigame;
+
+    public AudioClip connectSound;
 
     private GameObject _currentComponent;
 
@@ -68,6 +72,9 @@ public class BuildPC : BaseMinigame
             if(_currentComponent.TryGetComponent(out BuildComponentPC compPc) )
             {
                 compPc.onConnected.AddListener(act);
+                AudioSource aO = compPc.AddComponent<AudioSource>();
+                compPc.audioSource = aO;
+                compPc.audioSource.clip = connectSound;
             }
         }
         else
@@ -96,7 +103,13 @@ public class BuildPC : BaseMinigame
     public void StartFlashMinigame()
     {
         FlashMinigame.StartMinigame();
-        FlashMinigame.onEndMiniGame.AddListener(IncrementProgress);
+        FlashMinigame.onEndMiniGame.AddListener(StartWindowsInstallMinigame);
+    }
+
+    public void StartWindowsInstallMinigame()
+    {
+        windowsInstallMinigame.StartMinigame();
+        windowsInstallMinigame.onEndMiniGame.AddListener(IncrementProgress);
     }
 
     UnityAction stringFunctionToUnityAction(object target, string functionName)
