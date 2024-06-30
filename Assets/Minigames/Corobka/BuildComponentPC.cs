@@ -37,6 +37,10 @@ public class BuildComponentPC : MonoBehaviour, IBuild
         transform.position = _startPos;
         transform.localRotation = Quaternion.Euler(_startRot);
     }
+    public void Connected()
+    {
+        transform.localRotation = Quaternion.Euler(_startRot);
+    }
 
     public bool IsConnected()
     {

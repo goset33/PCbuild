@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ea1dbc0ed73aa34db7cc31e8e05d293, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5300717
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ea1dbc0ed73aa34db7cc31e8e05d293, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5300717
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ea1dbc0ed73aa34db7cc31e8e05d293, type: 3}
       propertyPath: m_LocalScale.z
-      value: -0.5300717
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ea1dbc0ed73aa34db7cc31e8e05d293, type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,3 +204,6 @@ MonoBehaviour:
   positionDragged: {x: 0, y: 0, z: 0}
   draggedRotation: {x: 270, y: 90, z: 90}
   indexConnect: 0
+  onConnected:
+    m_PersistentCalls:
+      m_Calls: []

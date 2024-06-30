@@ -87,7 +87,7 @@ public class Flash : MonoBehaviour, IDragged
         ChangeRotation();
         float currentDuration = 0.0f;
         Quaternion targetRot = Quaternion.AngleAxis(_targetRotEuler, _axisForRotation) * _startQuaternionForOtherAxis;
-        StartCoroutine(TimerMove(currentDuration, inSeconds, transform.position, targetRot, transform.rotation));
+        StartCoroutine(TimerMove(currentDuration, inSeconds, transform.position, targetRot, transform.localRotation));
         yield return new WaitForSeconds(inSeconds);
         StopAllCoroutines();
         canDragged = true;

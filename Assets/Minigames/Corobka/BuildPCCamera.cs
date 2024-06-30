@@ -63,11 +63,12 @@ public class BuildPCCamera : MonoBehaviour
                     
                     if(buildConnect.indexConnect == pcComponent.indexConnect && !pcComponent.IsConnected())
                     {
-                        
                         _interactObject.transform.SetParent(buildConnect.transform);
                         _interactObject.transform.localPosition = Vector3.zero;
-                        _interactObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                        pcComponent.Connected();
                         pcComponent.SetConnected(true);
+                        _interactObject = null;
+                        buildConnect.onConnect.Invoke();
                         Destroy(buildConnect.GetComponent<BuildConnected>());
                         _interactObject = null;
                     }

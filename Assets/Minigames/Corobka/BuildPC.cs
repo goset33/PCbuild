@@ -1,29 +1,35 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
+public struct PCComponets
+{
+    public GameObject spawnObject;
+    public string methodOnConnected;
+}
+ 
 public class BuildPC : BaseMinigame
 {
     public GameObject casePC;
-    public GameObject motherBoard;
-    public GameObject videoCard;
-    public GameObject processor;
-    public GameObject processorCooler;
-    public GameObject powerUnit;
-    public GameObject caseCooler;
     public Transform startTransform;
+    public List<PCComponets> componets = new List<PCComponets>();
+
 
     [Header("Mini game's")]
     public GameObject processorCoolerConnect;
     public GameObject processorMinigame;
     public GameObject TermopastMingame;
     public GameObject wiresMiniGame;
+    public BaseMinigame FlashMinigame;
 
     private GameObject _currentComponent;
 
     private int _currentProgress;
 
     public UnityEvent onMissedCasePC;
+    public UnityEvent onCompleteBuild;
 
     private void Start()
     {
@@ -51,35 +57,23 @@ public class BuildPC : BaseMinigame
     public void IncrementProgress()
     {
         _currentProgress++;
-        _currentComponent.GetComponent<BuildComponentPC>().onConnected.RemoveAllListeners();
         ReturnCurrentProgress();
     }
     public void ReturnCurrentProgress()
     {
-        switch (_currentProgress)
+        if(_currentProgress <= componets.Count - 1)
         {
-            case 0:
-                _currentComponent = Instantiate(motherBoard, startTransform);
-                _currentComponent.GetComponent<BuildComponentPC>().onConnected.AddListener(IncrementProgress);
-                break;
-            case 1:
-                _currentComponent = Instantiate(processor, startTransform);
-                _currentComponent.GetComponent<BuildComponentPC>().onConnected.AddListener(StartProcessorMiniGame);
-                break;
-            case 2:
-                _currentComponent = Instantiate(processorCooler, startTransform);
-                processorCoolerConnect.SetActive(true);
-                _currentComponent.GetComponent<BuildComponentPC>().onConnected.AddListener(IncrementProgress);
-                break;
-            case 3:
-                _currentComponent = Instantiate(powerUnit, startTransform);
-                _currentComponent.GetComponent<BuildComponentPC>().onConnected.AddListener(StartWiresMiniGame);
-                break;
-            case 4:
-                _currentComponent = Instantiate(videoCard, startTransform);
-                break;
+            _currentComponent = Instantiate(componets[_currentProgress].spawnObject, startTransform);
+            UnityAction act = stringFunctionToUnityAction(this, componets[_currentProgress].methodOnConnected);
+            if(_currentComponent.TryGetComponent(out BuildComponentPC compPc) )
+            {
+                compPc.onConnected.AddListener(act);
+            }
         }
-        Debug.Log(_currentProgress);
+        else
+        {
+            onCompleteBuild.Invoke();
+        }
     }
 
     public void StartProcessorMiniGame()
@@ -97,5 +91,17 @@ public class BuildPC : BaseMinigame
     {
         wiresMiniGame.GetComponent<BaseMinigame>().StartMinigame();
         wiresMiniGame.GetComponent<BaseMinigame>().onEndMiniGame.AddListener(IncrementProgress);
+    }
+
+    public void StartFlashMinigame()
+    {
+        FlashMinigame.StartMinigame();
+        FlashMinigame.onEndMiniGame.AddListener(IncrementProgress);
+    }
+
+    UnityAction stringFunctionToUnityAction(object target, string functionName)
+    {
+        UnityAction action = (UnityAction)Delegate.CreateDelegate(typeof(UnityAction), target, functionName);
+        return action;
     }
 }

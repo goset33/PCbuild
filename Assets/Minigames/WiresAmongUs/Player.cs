@@ -115,7 +115,7 @@ public class Player : BaseMinigame
     public void IncrementWire()
     {
         _interactCount++;
-        if(_interactCount == 5)
+        if(_interactCount == 4)
         {
             EndMinigame();
         }

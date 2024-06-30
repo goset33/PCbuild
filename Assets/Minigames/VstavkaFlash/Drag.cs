@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public interface IDragged
 {
@@ -13,8 +14,11 @@ public class Drag : MonoBehaviour
     public LayerMask connectedMask;
     private GameObject _interactObject;
 
+    public UnityEvent onComplete;
+
     // Update is called once per frame
     private Camera cam;
+    
 
 
 
@@ -72,15 +76,18 @@ public class Drag : MonoBehaviour
                 Flash flash = _interactObject.GetComponent<Flash>();
                 if (flash.countChangeRotation >= flash.maxCountChangeRotation)
                 {
-                    _interactObject.transform.position = hit.collider.transform.GetChild(0).transform.position;
+                    _interactObject.transform.SetParent(hit.collider.transform);
+                    _interactObject.transform.localPosition = Vector3.zero;
                     flash.isConnected = true;
                     flash.isDirtyConnected = false;
                     flash.canDragged = false;
                     _interactObject = null;
+                    onComplete.Invoke();
                 }
                 else
                 {
-                    _interactObject.transform.position = hit.collider.transform.GetChild(0).transform.position;
+                    _interactObject.transform.SetParent(hit.collider.transform);
+                    _interactObject.transform.localPosition = Vector3.zero;
                     flash.isDirtyConnected = true;
                     _interactObject = null;
                 }
