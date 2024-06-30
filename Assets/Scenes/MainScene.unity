@@ -3259,6 +3259,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2617488608568850666, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: m_Spacing.y
+      value: -15
+      objectReference: {fileID: 0}
     - target: {fileID: 3523299879759198889, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
       propertyPath: m_Name
       value: Shop
@@ -3291,6 +3295,10 @@ PrefabInstance:
       propertyPath: uiController
       value: 
       objectReference: {fileID: 1731150026}
+    - target: {fileID: 8319359716348861689, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: shopCards.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8559597382500545981, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
       propertyPath: m_SizeDelta.y
       value: -84.630005
@@ -3658,15 +3666,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6e354c9de84a63443ae0d2a352c53302, type: 3}
       propertyPath: m_LocalScale.x
-      value: -3.2959323
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e354c9de84a63443ae0d2a352c53302, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.2959325
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e354c9de84a63443ae0d2a352c53302, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.2959325
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e354c9de84a63443ae0d2a352c53302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3768,7 +3776,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fecc7166db118da4fa0f9dba66e34008, type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fecc7166db118da4fa0f9dba66e34008, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3909,7 +3917,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b7f3eb5cdb8c0bb45a29b9c27f104dd8, type: 3}
       propertyPath: m_LocalScale.x
-      value: -2.7185082
+      value: 2.718508
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7f3eb5cdb8c0bb45a29b9c27f104dd8, type: 3}
       propertyPath: m_LocalScale.y

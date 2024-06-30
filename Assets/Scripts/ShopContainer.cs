@@ -7,13 +7,13 @@ public class ShopContainer : MonoBehaviour
     public List<GameObject> shopCards = new List<GameObject>();
     public GameObject shopCardPrefab;
     public UIController uiController;
-    public CardInfoObject CardInfo;
+    public CardInfoObject[] CardInfo;
     public PCController pcController;
 
 
     private void Start()
     {
-        TestCards();
+        GenerateCards();
         //OnBuy.AddListener(Buy);
     }
     public void AddCard(CardInfoObject cardInfo)
@@ -26,12 +26,11 @@ public class ShopContainer : MonoBehaviour
 
     }
 
-    public void TestCards()
+    public void GenerateCards()
     {
-        int rand = Random.Range(1, 3);
-        for(int i = 0; i < rand; i ++)
+        foreach (CardInfoObject card in CardInfo)
         {
-            AddCard(CardInfo);
+            AddCard(card);
         }
     }
 

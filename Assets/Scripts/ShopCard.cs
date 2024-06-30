@@ -7,16 +7,18 @@ public class ShopCard : MonoBehaviour
     public CardInfoObject cardInfo;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI costText;
+    public Image previewImage;
 
     private Button _button;
     public ShopContainer container;
 
-    private void OnValidate()
+    private void Start()
     {
         if(cardInfo != null)
         {
-            costText.text = cardInfo.cost.ToString();
+            previewImage.sprite = cardInfo.preview;
             nameText.text = cardInfo.name.ToString();
+            costText.text = cardInfo.cost + "ð.";
         }
     }
 
