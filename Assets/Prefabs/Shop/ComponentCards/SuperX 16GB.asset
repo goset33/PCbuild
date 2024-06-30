@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3cfad4ba2598e49940eb9617781499, type: 3}
+  m_Name: SuperX 16GB
+  m_EditorClassIdentifier: 
+  preview: {fileID: 21300000, guid: 739fad5acaaa9414f83d309ea1c1a2b2, type: 3}
+  name: SuperX 16GB
+  cost: 10
+  gameObjectForSpawn: {fileID: 5321937843091418876, guid: 1f24194bf13fe084abf88b9802a0def7, type: 3}
+  timeForDelivery: 4

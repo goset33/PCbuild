@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class PCController : MonoBehaviour
 {
+    public GameObject box;
+
     public Transform player;
     public GameObject monitorCam;
 
@@ -92,6 +94,7 @@ public class PCController : MonoBehaviour
     public IEnumerator Delivery(GameObject gameObject, int waitSeconds)
     {
         yield return new WaitForSeconds(waitSeconds);
-        Instantiate(gameObject, new Vector3(0, 2, 0), Quaternion.identity);
+        GameObject newBox = Instantiate(box, new Vector3(0, 2, 0), Quaternion.identity);
+        newBox.GetComponent<OpenBoxer>().componentInBox = gameObject;
     }
 }

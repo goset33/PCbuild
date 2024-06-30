@@ -102,12 +102,12 @@ public class DayController : MonoBehaviour
 
     public void OnBuyAllComponents(CardInfoObject cardInfo)
     {
-        if (cardInfo.name == "CORE I3 12100F" || cardInfo.name == "LAMMAX 200T" || cardInfo.name == "GTX 1050 ti")
+        if (cardInfo.name == "CORE I3 12100F" || cardInfo.name == "LAMMAX 200T" || cardInfo.name == "GTX 1050 ti" || cardInfo.name == "USUS AM3 DDR3" || cardInfo.name == "SuperX 8GB" || cardInfo.name == "Hard Drive 500GB")
         {
             componentCounter++;
-            if (componentCounter == 3)
+            if (componentCounter == 6)
             {
-                task.text = "Распакуй запчасти и поставь все на свой рабочий стол";
+                task.text = "Распакуй запчасти и поставь всё на свой рабочий стол";
                 subtitle.text = "Теперь нужно всё распаковать и поставить корпус на рабочий стол";
                 source.PlayOneShot(guideAudioClips[8], source.volume);
             }
