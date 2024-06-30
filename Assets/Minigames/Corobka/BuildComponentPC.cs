@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.Events;
 
 public interface IBuild
 {
@@ -16,6 +16,7 @@ public class BuildComponentPC : MonoBehaviour, IBuild
     public Vector3 positionDragged;
     public Vector3 draggedRotation;
     public int indexConnect;
+    public UnityEvent onConnected;
 
     private Vector3 _startPos;
     private Vector3 _startRot;
@@ -45,5 +46,12 @@ public class BuildComponentPC : MonoBehaviour, IBuild
     public void SetConnected(bool connected)
     {
         _connected = connected;
+        if(_connected)
+        {
+            onConnected.Invoke();
+
+        }
     }
+
+    
 }

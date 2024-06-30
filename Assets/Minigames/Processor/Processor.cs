@@ -2,36 +2,44 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Processor : MonoBehaviour
+public class Processor : BaseMinigame
 {
-    public bool isProcessorGame = true;
     private bool isCanMove = true;
-    public Transform[] points;
-    public Camera cam;
+    public Transform[] points; 
     public float speed;
     public float range = 1.0f;
     private Transform _currentPoint;
-    private Coroutine _coroutine;
     [SerializeField] private int _maxErrors = 4;
     [SerializeField] private int _currentErrors = 0;
     [SerializeField] private Transform _posForWin;
+    private GameObject movedGameObject;
+    private bool _isStart = false;
 
     public UnityEvent OnError;
     public UnityEvent OnSuccess;
 
+
+    public override void StartMinigame(GameObject gameObject)
+    {
+        base.StartMinigame(gameObject);
+        movedGameObject = gameObject;
+        _isStart = true;
+    }
+
+
     private void Start()
     {
         _currentPoint = points[0];
-        _coroutine = null;
+        OnSuccess.AddListener(EndMinigame);
     }
     private void Update()
     {
-        if (isProcessorGame)
+        if (_started)
         {
             if (isCanMove)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _currentPoint.position, Time.deltaTime * speed);
-                if (transform.position == _currentPoint.position)
+                movedGameObject.transform.position = Vector3.MoveTowards(movedGameObject.transform.position, _currentPoint.position, Time.deltaTime * speed);
+                if (movedGameObject.transform.position == _currentPoint.position)
                 {
                     if (_currentPoint == points[0])
                     {
@@ -45,25 +53,24 @@ public class Processor : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                Ray ray = newCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit))
                 {
 
-                    if (hit.collider.gameObject == gameObject)
+                    if (hit.collider.gameObject == movedGameObject)
                     {
-
-                        if (IsInRange(transform.position, _posForWin.position, range) && _currentErrors < _maxErrors)
+                        if (IsInRange(movedGameObject.transform.position, _posForWin.position, range) && _currentErrors < _maxErrors)
                         {
-                            _coroutine = StartCoroutine(WinCoroutine());
+                            StartCoroutine(WinCoroutine());
                         }
                         else
                         {
                             _currentErrors++;
-                            if(_currentErrors >= _maxErrors)
+                            if (_currentErrors >= _maxErrors)
                             {
-                                OnError.Invoke();
+                                
                                 Destroy(gameObject);
                             }
                             ;
@@ -75,6 +82,7 @@ public class Processor : MonoBehaviour
 
             }
         }
+        
     }
 
     public bool IsInRange(Vector3 a, Vector3 b, float range)
@@ -88,9 +96,9 @@ public class Processor : MonoBehaviour
     private IEnumerator WinCoroutine()
     {
         isCanMove = false;
-        while(!(transform.position == _posForWin.position))
+        while(!(movedGameObject.transform.position == _posForWin.position))
         {
-            transform.position =  Vector3.MoveTowards(transform.position, _posForWin.position, Time.deltaTime * speed);
+            movedGameObject.transform.position =  Vector3.MoveTowards(movedGameObject.transform.position, _posForWin.position, Time.deltaTime * speed);
             yield return new WaitForSeconds(Time.deltaTime);
         }
         OnSuccess.Invoke();

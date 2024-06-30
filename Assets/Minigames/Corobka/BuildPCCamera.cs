@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class BuildPCCamera : MonoBehaviour
@@ -33,7 +34,10 @@ public class BuildPCCamera : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            _interactObject.GetComponent<BuildComponentPC>().UnDragged();
+            if (_interactObject)
+            {
+                _interactObject.GetComponent<BuildComponentPC>().UnDragged();
+            }
             _interactObject = null;
         }
 
@@ -49,18 +53,22 @@ public class BuildPCCamera : MonoBehaviour
             _interactObject.transform.position = TargetPos;
             RaycastHit hit;
             bool blocking = Physics.Raycast(ray, out hit, 1000.0f, _connectedMask);
+            
             if (blocking)
             {
-                if(hit.collider.TryGetComponent(out BuildConnected buildConnect))
+                if (hit.collider.TryGetComponent(out BuildConnected buildConnect))
                 {
+                    
                     _interactObject.TryGetComponent(out BuildComponentPC pcComponent);
-                    if(buildConnect.indexConnect == pcComponent.indexConnect)
+                    
+                    if(buildConnect.indexConnect == pcComponent.indexConnect && !pcComponent.IsConnected())
                     {
                         
                         _interactObject.transform.SetParent(buildConnect.transform);
                         _interactObject.transform.localPosition = Vector3.zero;
                         _interactObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
                         pcComponent.SetConnected(true);
+                        Destroy(buildConnect.GetComponent<BuildConnected>());
                         _interactObject = null;
                     }
                 }

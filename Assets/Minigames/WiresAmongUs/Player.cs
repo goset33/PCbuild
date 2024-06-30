@@ -1,11 +1,24 @@
-using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : BaseMinigame
 {
     public Camera cam;
     private Wire _interactObject;
+    private int _interactCount = 0;
     [SerializeField] LayerMask layerMask;
+
+    public GameObject wires;
+
+    public override void StartMinigame()
+    {
+        base.StartMinigame();
+        wires.SetActive(true);
+    }
+    public override void EndMinigame()
+    {
+        base.EndMinigame();
+        wires.SetActive(false);
+    }
 
     void Update()
     {
@@ -96,6 +109,15 @@ public class Player : MonoBehaviour
                     _interactObject.SetIsConnected(true, connected.transform.position + connected.offsetPositionForConnected);
                 }
             }
+        }
+    }
+
+    public void IncrementWire()
+    {
+        _interactCount++;
+        if(_interactCount == 5)
+        {
+            EndMinigame();
         }
     }
 }
