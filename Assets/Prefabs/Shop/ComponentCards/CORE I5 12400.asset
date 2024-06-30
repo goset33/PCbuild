@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preview: {fileID: 21300000, guid: 504115f578aba3d408327d0bde151c89, type: 3}
   name: CORE I5 12400
-  cost: 10
+  cost: 15000
   gameObjectForSpawn: {fileID: 3132002001602495294, guid: 61abfecb949d8464e948405c458b0d4d, type: 3}
   timeForDelivery: 5

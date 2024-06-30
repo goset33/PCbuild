@@ -29,7 +29,6 @@ public class SellController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && Vector3.Distance(transform.position, Camera.main.transform.position) <= 3f)
         {
-            print(1);
             Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale, Quaternion.identity);
             foreach (Collider collider in colliders)
             {

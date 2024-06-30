@@ -32,7 +32,7 @@ public class MainMenuController : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("Cash") && index == 0)
         {
-            PlayerPrefs.SetInt("Cash", 1000);
+            PlayerPrefs.SetInt("Cash", 90000);
             PlayerPrefs.SetInt("Day", 0);
         }
         StartCoroutine(buttonPressed(index));

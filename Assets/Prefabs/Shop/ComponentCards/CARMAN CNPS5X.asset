@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preview: {fileID: 21300000, guid: 815a91dd87bfc5a4c9bdc1c0f6efa518, type: 3}
   name: CARMAN CNPS5X
-  cost: 10
+  cost: 3000
   gameObjectForSpawn: {fileID: 3258762148068536018, guid: e035e439c71e06c4f83808a58ab0bbbd, type: 3}
   timeForDelivery: 5
