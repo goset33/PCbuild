@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class PCController : MonoBehaviour
 {
-    public MeshCollider walls;
     public GameObject box;
     public Transform boxSpawnPos;
 
@@ -18,11 +17,11 @@ public class PCController : MonoBehaviour
 
     private bool isPlayerInTrigger;
     private bool isInPC;
-    public UnityEvent isInMail;
+    public UnityEvent<string[]> isInMail;
 
     private void Update()
     {
-        if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.Q))
         {
             OnComputerStart();
         }
@@ -82,7 +81,7 @@ public class PCController : MonoBehaviour
             Window.SetActive(true);
             if (Window.name.Equals("Mail"))
             {
-                isInMail.Invoke();
+                isInMail.Invoke(null);
             }
         }
         else
@@ -98,13 +97,9 @@ public class PCController : MonoBehaviour
         yield return new WaitForSeconds(waitSeconds);
         GameObject newBox = Instantiate(box, boxSpawnPos.position, Quaternion.identity);
         newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        walls.enabled = false;
-        Physics.IgnoreLayerCollision(newBox.layer, newBox.layer, true);
         newBox.GetComponent<Rigidbody>().AddForce(-transform.forward * 17f, ForceMode.Impulse);
         newBox.GetComponent<OpenBoxer>().componentInBox = gameObject;
         yield return new WaitForSeconds(0.5f);
-        walls.enabled = true;
         newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        Physics.IgnoreLayerCollision(newBox.layer, newBox.layer, false);
     }
 }
