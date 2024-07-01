@@ -41,6 +41,7 @@ public class BuildPC : BaseMinigame
     {
         _prevCamera = Camera.current;
         newCamera.enabled = true;
+        Camera.main.enabled = false;
         Camera.SetupCurrent(newCamera);
         _started = true;
         onStartMiniGame.Invoke();
@@ -57,7 +58,6 @@ public class BuildPC : BaseMinigame
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //newCamera.enabled = false;
         Camera.main.enabled = true;
         Camera.SetupCurrent(FindObjectOfType<FirstPersonLook>().GetComponent<Camera>());
         FindObjectOfType<FirstPersonLook>().GetComponent<Camera>().enabled = true;
