@@ -80,8 +80,8 @@ public class SellController : MonoBehaviour
 
             if (isRight)
             {
+                PlayerPrefs.SetInt("Cash", price);
                 uiController.OnCashValueChanged();
-                print(PlayerPrefs.GetInt("Cash"));
                 Destroy(PC.gameObject);
                 voice.PlayOneShot(good[Random.Range(0, good.Length)]);
                 OnSell.Invoke();
