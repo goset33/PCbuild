@@ -100,7 +100,7 @@ public class PCController : MonoBehaviour
         yield return new WaitForSeconds(waitSeconds);
         GameObject newBox = Instantiate(box, boxSpawnPos.position, Quaternion.identity);
         newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        newBox.GetComponent<Rigidbody>().AddForce(-transform.forward * Random.Range(15f, 18f), ForceMode.Impulse);
+        newBox.GetComponent<Rigidbody>().AddForce(-transform.forward * Random.Range(14f, 19f), ForceMode.Impulse);
         newBox.GetComponent<OpenBoxer>().componentInBox = gameObject;
         yield return new WaitForSeconds(0.5f);
         newBox.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

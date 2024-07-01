@@ -1,6 +1,10 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using DG.Tweening;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 
 public class UIController : MonoBehaviour
@@ -22,9 +26,10 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
+        OnDayEnded.AddListener(EndDay);
+
         timeText.text = hours + ":0" + minutes;
 
-        PlayerPrefs.SetInt("Cash", 90000); // ! ”ƒ¿À»“‹ Õ¿ –≈À»«≈
         OnCashValueChanged();
     }
 
@@ -65,5 +70,19 @@ public class UIController : MonoBehaviour
     {
         cash = PlayerPrefs.GetInt("Cash");
         cashText.text = cash.ToString();
+    }
+
+    public void EndDay()
+    {
+        StartCoroutine(End());
+    }
+
+    IEnumerator End()
+    {
+        transform.GetChild(3).GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(true);
+        transform.GetChild(3).GetComponent<Image>().DOFade(1f, 1.5f);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("MainScene");
     }
 }

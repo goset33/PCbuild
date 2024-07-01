@@ -8,11 +8,11 @@ public class BuildController : MonoBehaviour
     public MailController mailController;
     public BuildPC buildPC;
 
+    public List<string> tags;
     public List<Collider> colliders;
 
     public bool isTaskAccepted;
 
-    private string[] requriedNames;
     public int counter;
 
     public Transform spawnPCTransform;
@@ -30,12 +30,23 @@ public class BuildController : MonoBehaviour
 
     public void OnTaskAccepted(string[] i)
     {
-        isTaskAccepted = true;
-        requriedNames = i;
-        spawningPC = Instantiate(prefabPC, spawnPCTransform.transform.position, spawnPCTransform.transform.rotation);
-        buildPC = spawningPC.GetComponent<BuildPC>();
-        spawningPC.SetActive(false);
-        spawningPC.GetComponent<BuildPC>().onCompleteBuild.AddListener(colliders.Clear);
+        if (!isTaskAccepted)
+        {
+            isTaskAccepted = true;
+            spawningPC = Instantiate(prefabPC, spawnPCTransform.transform.position, spawnPCTransform.transform.rotation);
+            buildPC = spawningPC.GetComponent<BuildPC>();
+            spawningPC.SetActive(false);
+            spawningPC.GetComponent<BuildPC>().onCompleteBuild.AddListener(colliders.Clear);
+
+            tags.Add("Core");
+            tags.Add("Videocard");
+            tags.Add("Cooler");
+            tags.Add("MotherBoard");
+            tags.Add("HardDrive");
+            tags.Add("RAM");
+            tags.Add("Power");
+            tags.Add("ComputerCase");
+        }
     }
 
     public void EnableBoxCollider()
@@ -47,18 +58,19 @@ public class BuildController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       
         if (isTaskAccepted)
         {
-            foreach (string requriedName in requriedNames)
+            other.gameObject.name = other.gameObject.name.Replace("(Clone)", "");
+            for (int i = 0; i < tags.Count; i++)
             {
-                other.gameObject.name = other.gameObject.name.Replace("(Clone)", "");
-                if (other.gameObject.name.Equals(requriedName))
+                if (other.gameObject.CompareTag(tags[i]))
                 {
                     colliders.Add(other);
+                    tags.Remove(tags[i]);
                     counter++;
                 }
             }
+
             if (CheckColliders())
             {
                 foreach (Collider collider in colliders)
@@ -146,23 +158,6 @@ public class BuildController : MonoBehaviour
                 GetComponent<Collider>().enabled = false;
                 buildPC.StartMinigame();
                 buildPC.onEndMiniGame.AddListener(EnableBoxCollider);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other != null)
-        {
-
-
-            foreach (string requriedName in requriedNames)
-            {
-                if (other.gameObject.name == requriedName)
-                {
-                    colliders.Remove(other);
-                    counter--;
-                }
             }
         }
     }

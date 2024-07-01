@@ -720,6 +720,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 609417284}
+        m_TargetAssemblyTypeName: DayController, Assembly-CSharp
+        m_MethodName: isMailOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &241409385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,7 +837,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -846,9 +858,9 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 1
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -878,7 +890,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -302.94742, y: 0, z: -292.94116, w: -15.336084}
+  m_margin: {x: -305.6581, y: 0, z: -292.94116, w: -15.336084}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -989,6 +1001,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb4a62320b66f145a23b7a58a72e128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnSell:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 609417284}
+        m_TargetAssemblyTypeName: DayController, Assembly-CSharp
+        m_MethodName: OnFinallySell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   container: {fileID: 165404012}
   uiController: {fileID: 1731150026}
   mailController: {fileID: 1805672206}
@@ -1052,8 +1079,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.2967026, y: 1.5023872, z: 3.0495818}
-  m_Center: {x: -0.104191765, y: 0.25119454, z: -0.35524583}
+  m_Size: {x: 3.916138, y: 2.2475822, z: 3.8146546}
+  m_Center: {x: 0.064514056, y: 0.35446975, z: -0.18453068}
 --- !u!1001 &438751222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1259,7 +1286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -117, y: -65}
+  m_AnchoredPosition: {x: -148, y: -70}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &514527373
@@ -1345,7 +1372,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 29.956802, y: 0, z: 52.41253, w: -12.316872}
+  m_margin: {x: 29.956802, y: 0, z: 43.695312, w: -12.316872}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1489,7 +1516,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a6e3be2f2ca182340aacee42b121d075, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1603,9 +1630,8 @@ MonoBehaviour:
   Dark: {fileID: 474369905}
   subtitle: {fileID: 1205095951}
   task: {fileID: 390994034}
-  monitorCanvas: {fileID: 925699053}
-  mailController: {fileID: 1805672206}
-  shopContainer: {fileID: 165404012}
+  buildController: {fileID: 1396626950}
+  buildPC: {fileID: 0}
   source: {fileID: 1468880155}
   guideAudioClips:
   - {fileID: 8300000, guid: a1f31ccb420153b499dae56b03716088, type: 3}
@@ -1625,6 +1651,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7a200680948f3d04e8692ccb0eff18ff, type: 3}
   - {fileID: 8300000, guid: a0bbe53a3a904b24caa4e867e743de3c, type: 3}
   - {fileID: 8300000, guid: c6bde654357a4e0428aee33cb26b3209, type: 3}
+  componentCounter: 0
 --- !u!4 &641190198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5240771479555520432, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
@@ -2117,7 +2144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5238820401998598406, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.02906159
+      value: 0.97400844
       objectReference: {fileID: 0}
     - target: {fileID: 5238820401998598406, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2125,7 +2152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5238820401998598406, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9995777
+      value: 0.22651173
       objectReference: {fileID: 0}
     - target: {fileID: 5238820401998598406, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2137,7 +2164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5238820401998598406, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -176.669
+      value: 26.184
       objectReference: {fileID: 0}
     - target: {fileID: 5238820401998598406, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2150,6 +2177,26 @@ PrefabInstance:
     - target: {fileID: 5239139276810530380, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239139276810530380, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.3453408
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239139276810530380, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239139276810530380, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9384774
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239139276810530380, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239139276810530380, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -139.595
       objectReference: {fileID: 0}
     - target: {fileID: 5241267463746980526, guid: f2e0b7ae4dae8cf44955bccd3512b213, type: 3}
       propertyPath: m_Name
@@ -3876,6 +3923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mailController: {fileID: 1805672206}
   buildPC: {fileID: 0}
+  tags: []
   colliders: []
   isTaskAccepted: 0
   counter: 0
@@ -4018,7 +4066,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a1f31ccb420153b499dae56b03716088, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4257,6 +4305,30 @@ PrefabInstance:
       propertyPath: uiController
       value: 
       objectReference: {fileID: 1731150026}
+    - target: {fileID: 8319359716348861689, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: OnBuy.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319359716348861689, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: OnBuy.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 609417284}
+    - target: {fileID: 8319359716348861689, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: OnBuy.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319359716348861689, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: OnBuy.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnBuyAllComponents
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319359716348861689, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: OnBuy.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DayController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319359716348861689, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
+      propertyPath: OnBuy.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8559597382500545981, guid: 46795e9a130efff4199b8e2ca41d85e3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -4700,7 +4772,7 @@ MonoBehaviour:
       m_Calls: []
   hours: 8
   minutes: 0
-  timePerHour: 1
+  timePerHour: 1.5
   cashText: {fileID: 514527373}
   cash: 0
 --- !u!1 &1741605519
@@ -5914,6 +5986,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6898847763302550545, guid: 5e6a020a68380934aaefb0df2cef9794, type: 3}
+      propertyPath: sellController
+      value: 
+      objectReference: {fileID: 404164498}
     - target: {fileID: 6898847763302550545, guid: 5e6a020a68380934aaefb0df2cef9794, type: 3}
       propertyPath: taskAccepted.m_PersistentCalls.m_Calls.Array.size
       value: 1

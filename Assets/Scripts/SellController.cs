@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SellController : MonoBehaviour
 {
+    public UnityEvent OnSell;
+
     public ShopContainer container;
     public UIController uiController;
     public MailController mailController;
@@ -38,7 +41,6 @@ public class SellController : MonoBehaviour
             {
                 if (requaredComponents[i] != null)
                 {
-                    print(Components[i].name);
                     if (Components[i].name.Equals(requaredComponents[i]) && isRight)
                     {
                         print("pricing");
@@ -78,11 +80,11 @@ public class SellController : MonoBehaviour
 
             if (isRight)
             {
-                PlayerPrefs.SetInt("Cash", PlayerPrefs.GetInt("Cash") + price);
                 uiController.OnCashValueChanged();
                 print(PlayerPrefs.GetInt("Cash"));
                 Destroy(PC.gameObject);
                 voice.PlayOneShot(good[Random.Range(0, good.Length)]);
+                OnSell.Invoke();
             }
             else
             {

@@ -19,7 +19,7 @@ public class MainMenuController : MonoBehaviour
 
     private void Awake()
     {
-        if(!PlayerPrefs.HasKey("CompanyName"))
+        if(!PlayerPrefs.HasKey("Company"))
         {
             registrationGameObject.SetActive(true);
         }
@@ -41,6 +41,8 @@ public class MainMenuController : MonoBehaviour
             }
             timer = 0f;
         }
+
+        Camera.main.transform.Rotate(Vector3.up * 5f * Time.deltaTime);
     }
 
     public void OnButtonPressed(int index)
@@ -85,7 +87,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SetNewCompanyName()
     {
-        PlayerPrefs.SetString("CompanyName", textMeshPro.text);
+        PlayerPrefs.SetString("Company", textMeshPro.text);
         registrationGameObject.SetActive(false);
     }
 }

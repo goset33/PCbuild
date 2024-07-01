@@ -263,7 +263,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ConnectSound: {fileID: 0}
-  pcComponentType: 0
+  pcComponentType: 2
   audioSource: {fileID: 0}
   _startLocalRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2065384138740779036
