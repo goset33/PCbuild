@@ -48,6 +48,8 @@ public class BuildPC : BaseMinigame
         ReturnCurrentProgress();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        onStartMiniGame.AddListener(FindObjectOfType<DayController>().OnStartBuild);
     }
 
     public override void EndMinigame()

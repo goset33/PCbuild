@@ -39,6 +39,24 @@ public class PaintingTermopasta : BaseMinigame
         _completeDrawingPixelsCount = (int)Mathf.Pow(_textureSize, 2);
     }
 
+    private void Start()
+    {
+        if (_texture == null)
+        {
+            _texture = new Texture2D(_textureSize, _textureSize);
+        }
+        if (_texture.width != _textureSize)
+        {
+            _texture.Reinitialize(_textureSize, _textureSize);
+        }
+        _texture.wrapMode = TextureWrapMode.Repeat;
+        _texture.filterMode = FilterMode.Point;
+
+        _material.mainTexture = _texture;
+        _texture.Apply();
+        _completeDrawingPixelsCount = (int)Mathf.Pow(_textureSize, 2);
+    }
+
     public override void EndMinigame()
     {
         base.EndMinigame();

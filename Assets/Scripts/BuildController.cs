@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,15 +15,26 @@ public class BuildController : MonoBehaviour
     private string[] requriedNames;
     public int counter;
 
+    public Transform spawnPCTransform;
+    public GameObject prefabPC;
+    public GameObject spawningPC;
+    public Material _matProcessor;
+    public Color colorProcessor;
+
     private void Awake()
     {
         mailController.taskAccepted.AddListener(OnTaskAccepted);
+
+        _matProcessor.mainTexture = new Texture2D(16, 16);
     }
 
     public void OnTaskAccepted(string[] i)
     {
         isTaskAccepted = true;
         requriedNames = i;
+        spawningPC = Instantiate(prefabPC, spawnPCTransform.transform.position, spawnPCTransform.transform.rotation);
+        buildPC = spawningPC.GetComponent<BuildPC>();
+        spawningPC.SetActive(false);
     }
 
     public void EnableBoxCollider()
@@ -34,6 +46,7 @@ public class BuildController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (isTaskAccepted)
         {
             foreach (string requriedName in requriedNames)
@@ -63,8 +76,7 @@ public class BuildController : MonoBehaviour
                 {
                     buildPC.componets.Add(prefab);
                 }
-
-
+                
                 for (int i = 0; i < colliders.Count; i++)
                 {
                     if (colliders[i].CompareTag("MotherBoard"))
@@ -109,14 +121,11 @@ public class BuildController : MonoBehaviour
                         prefab.methodOnConnected = "StartFlashMinigame";
                         buildPC.componets[6] = prefab;
                     }
-                    //colliders[i].gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    //colliders[i].GetComponent<DragObject>().enabled = false;
                     colliders[i].GetComponent<BuildComponentPC>().enabled = true;
                     Destroy(colliders[i].GetComponent<Rigidbody>());
                     Destroy(colliders[i].GetComponent<DragObject>());
                     colliders[i].gameObject.SetActive(false);
                     colliders[i].transform.SetParent(buildPC.startTransform);
-                    //colliders[i].transform.position = Vector3.zero;
                     colliders[i].transform.localPosition = Vector3.zero;
                     colliders[i].transform.localRotation = Quaternion.identity;
                     print(9);
@@ -140,4 +149,5 @@ public class BuildController : MonoBehaviour
             }
         }
     }
+    
 }
