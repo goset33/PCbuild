@@ -21,6 +21,13 @@ public class PaintingTermopasta : BaseMinigame
     [SerializeField] private int _completeDrawingPixelsCount;
     public UnityEvent OnCompleted;
 
+    public override void StartMinigame()
+    {
+        base.StartMinigame();
+        newCamera.enabled = true;
+
+    }
+
     private void OnValidate()
     {
         if( _texture == null)
@@ -62,7 +69,7 @@ public class PaintingTermopasta : BaseMinigame
         base.EndMinigame();
         Camera.current.enabled = false;
         _prevCamera.enabled = false;
-        Camera.main.enabled = true;
+        //Camera.main.enabled = true;
         Camera.SetupCurrent(Camera.main);
 
     }
