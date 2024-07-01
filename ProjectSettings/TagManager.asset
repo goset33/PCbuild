@@ -15,6 +15,7 @@ TagManager:
   - Power
   - ComputerCase
   - Box
+  - Ball
   layers:
   - Default
   - TransparentFX

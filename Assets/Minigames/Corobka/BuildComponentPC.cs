@@ -23,12 +23,13 @@ public class BuildComponentPC : MonoBehaviour, IBuild
 
     private Vector3 _startPos;
     private Vector3 _startRot;
+    public Quaternion _startLocalRot;
 
     private void Start()
     {
         _startPos = transform.position;
         _startRot = transform.rotation.eulerAngles;
-
+        _startLocalRot = transform.localRotation;
 
     }
 
