@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,18 @@ public interface IBuild
     void Dragged();
 }
 
+[Flags]
+public enum PCComponentType
+{
+    Motherboard = 0,
+    VideoCard = 1,
+    Processor = 2,
+    Ram = 3,
+    ProcCooler = 4,
+    PowerUnit = 5,
+    Hard = 6
+}
+
 public class BuildComponentPC : MonoBehaviour, IBuild
 {
     private bool _connected = false;
@@ -18,6 +31,7 @@ public class BuildComponentPC : MonoBehaviour, IBuild
     public int indexConnect;
     public UnityEvent onConnected;
     public AudioClip ConnectSound;
+    public PCComponentType pcComponentType;
 
     public AudioSource audioSource;
 

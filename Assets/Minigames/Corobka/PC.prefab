@@ -1047,9 +1047,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5153024609143968388}
   - component: {fileID: 5470290945932216823}
+  - component: {fileID: -9076629272467188479}
   m_Layer: 0
   m_Name: PC
-  m_TagString: Untagged
+  m_TagString: PC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1162,6 +1163,27 @@ MonoBehaviour:
   onCompleteBuild:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &-9076629272467188479
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561807257865859203}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2741217172606875650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1280,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   cam: {fileID: 5051198786825951318}
-  _brushSize: 8
+  _brushSize: 24
   _textureSize: 24
   _texture: {fileID: 0}
   _material: {fileID: 2100000, guid: 547774c38ae416041ade7a977f38007b, type: 2}
@@ -1516,7 +1538,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4729767270780425375}
   - component: {fileID: 6686499863209305630}
-  - component: {fileID: 3181199232002968815}
   - component: {fileID: 4812085880971891148}
   m_Layer: 0
   m_Name: PackCamera
@@ -1591,14 +1612,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3181199232002968815
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3211536244307235551}
-  m_Enabled: 1
 --- !u!114 &4812085880971891148
 MonoBehaviour:
   m_ObjectHideFlags: 0

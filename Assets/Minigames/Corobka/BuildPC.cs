@@ -88,6 +88,7 @@ public class BuildPC : BaseMinigame
         else
         {
             onCompleteBuild.Invoke();
+            StartFlashMinigame();
         }
     }
 

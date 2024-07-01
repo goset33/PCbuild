@@ -35,6 +35,7 @@ public class BuildController : MonoBehaviour
         spawningPC = Instantiate(prefabPC, spawnPCTransform.transform.position, spawnPCTransform.transform.rotation);
         buildPC = spawningPC.GetComponent<BuildPC>();
         spawningPC.SetActive(false);
+        spawningPC.GetComponent<BuildPC>().onCompleteBuild.AddListener(colliders.Clear);
     }
 
     public void EnableBoxCollider()
@@ -58,7 +59,7 @@ public class BuildController : MonoBehaviour
                     counter++;
                 }
             }
-            if (counter == 8)
+            if (CheckColliders())
             {
                 foreach (Collider collider in colliders)
                 {
@@ -72,11 +73,13 @@ public class BuildController : MonoBehaviour
 
                 buildPC.componets.Clear();
                 PCComponets prefab = new PCComponets();
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 5; j++)
                 {
                     buildPC.componets.Add(prefab);
                 }
-                
+                List<PCComponets> hards = new List<PCComponets>();
+                List<PCComponets> ram = new List<PCComponets>();
+
                 for (int i = 0; i < colliders.Count; i++)
                 {
                     if (colliders[i].CompareTag("MotherBoard"))
@@ -113,14 +116,21 @@ public class BuildController : MonoBehaviour
                     {
                         prefab.spawnObject = colliders[i].gameObject;
                         prefab.methodOnConnected = "IncrementProgress";
-                        buildPC.componets[5] = prefab;
+                        if(hards.Count < 2)
+                        {
+                            hards.Add(prefab);
+                        }
                     }
                     else if (colliders[i].CompareTag("RAM"))
                     {
                         prefab.spawnObject = colliders[i].gameObject;
-                        prefab.methodOnConnected = "StartFlashMinigame";
-                        buildPC.componets[6] = prefab;
+                        prefab.methodOnConnected = "IncrementProgress";
+                        if (ram.Count < 4)
+                        {
+                            ram.Add(prefab);
+                        }
                     }
+                    
                     colliders[i].GetComponent<BuildComponentPC>().enabled = true;
                     Destroy(colliders[i].GetComponent<Rigidbody>());
                     Destroy(colliders[i].GetComponent<DragObject>());
@@ -130,6 +140,8 @@ public class BuildController : MonoBehaviour
                     colliders[i].transform.localRotation = Quaternion.identity;
                     print(9);
                 }
+                buildPC.componets.AddRange(hards);
+                buildPC.componets.AddRange(ram);
                 buildPC.gameObject.SetActive(true);
                 GetComponent<Collider>().enabled = false;
                 buildPC.StartMinigame();
@@ -140,14 +152,44 @@ public class BuildController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        foreach (string requriedName in requriedNames)
+        if (other != null)
         {
-            if (other.gameObject.name == requriedName)
+
+
+            foreach (string requriedName in requriedNames)
             {
-                colliders.Remove(other);
-                counter--;
+                if (other.gameObject.name == requriedName)
+                {
+                    colliders.Remove(other);
+                    counter--;
+                }
             }
         }
+    }
+
+    private bool CheckColliders()
+    {
+        return GetElementsByTag("MotherBoard") > 0 &&
+            GetElementsByTag("Core") > 0 &&
+            GetElementsByTag("Cooler") > 0 &&
+            GetElementsByTag("Power") > 0 &&
+            GetElementsByTag("Videocard") > 0 &&
+            GetElementsByTag("HardDrive") > 0 &&
+            GetElementsByTag("RAM") > 0 &&
+            GetElementsByTag("ComputerCase") > 0;
+
+   }
+    private int GetElementsByTag(string tag)
+    {
+        int i = 0;
+        foreach(Collider c in colliders)
+        {
+            if(c.CompareTag(tag))
+            {
+                i++;
+            }
+        }
+        return i;
     }
     
 }
