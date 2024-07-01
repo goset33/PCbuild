@@ -13,7 +13,8 @@ public class SellController : MonoBehaviour
     public bool hasBox;
 
     public BuildPC PC;
-    public string[] requaredComponents = new string[7];
+    public string[] requaredComponents = new string[8];
+    public GameObject[] Components = new GameObject[8];
 
     public AudioClip[] good, bad;
 
@@ -29,94 +30,52 @@ public class SellController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && PC != null)
+        if (Input.GetKeyDown(KeyCode.R) && hasBox)
         {
-            //Vector3.Distance(transform.position, Camera.main.transform.position) <= 3f
-            //Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale, Quaternion.identity);
-            //foreach (Collider collider in colliders)
-            //{
-            //    if (collider.CompareTag("Box"))
-            //    {
-            //        hasBox = true;
-            //    }
-            //    if (collider.CompareTag("Core"))
-            //    {
-            //        Components[0] = collider.gameObject;
-            //    }
-            //    if (collider.CompareTag("Videocard"))
-            //    {
-            //        Components[1] = collider.gameObject;
-            //    }
-            //    if (collider.CompareTag("MotherBoard"))
-            //    {
-            //        Components[2] = collider.gameObject;
-            //    }
-            //    if (collider.CompareTag("HardDrive"))
-            //    {
-            //        Components[3] = collider.gameObject;
-            //    }
-            //    if (collider.CompareTag("CompCase"))
-            //    {
-            //        Components[4] = collider.gameObject;
-            //    }
-            //    if (collider.CompareTag("RAM"))
-            //    {
-            //        Components[5] = collider.gameObject;
-            //    }
-            //    if (collider.CompareTag("Cooler"))
-            //    {
-            //        Components[6] = collider.gameObject;
-            //    }
-            //    if (collider.CompareTag("Power"))
-            //    {
-            //        Components[7] = collider.gameObject;
-            //    }
-            //}
-
-                int price = 0;
-                bool isRight = true;
-            List<PCComponets> componentss = PC.componets;
-                foreach (CardInfoObject cardInfo in container.CardInfo)
+            int price = 0;
+            bool isRight = true;
+            for (int i = 0; i < requaredComponents.Length; i++)
+            {
+                if (requaredComponents[i] != null)
                 {
-                    foreach (PCComponets component in componentss)
+                    print(Components[i].name);
+                    if (Components[i].name.Equals(requaredComponents[i]) && isRight)
                     {
-                        foreach(string required in requaredComponents)
+                        print("pricing");
+                        CardInfoObject rightCard = null;
+                        foreach (CardInfoObject cardInfo in container.CardInfo)
                         {
-                            if (component.spawnObject != null)
+                            if (cardInfo.name.Equals(requaredComponents[i]))
                             {
-                                if (required != null)
-                                {
-                                    print(1);
-                                    //component.spawnObject.name = component.spawnObject.name.Replace("(Clone)", "");
-                                    if (cardInfo.name == component.spawnObject.name && cardInfo.name == required && isRight)
-                                    {
-                                        print("pricing");
-                                        price += Mathf.RoundToInt(cardInfo.cost + (cardInfo.cost * 0.2f));
-                                    }
-                                    else
-                                    {
-                                        
-                                        isRight = false;
-                                    }
-                                }
-                                else
-                                {
-                                    print(component.spawnObject.name + "  " + cardInfo.name + "  " + required);
-                                    price += Mathf.RoundToInt(cardInfo.cost + (cardInfo.cost * 0.2f));
-                                }
-                            }
-                            else
-                            {
-                                print(component.spawnObject.name + "  " + cardInfo.name + "  " + required);
-                                isRight = false;
+                                rightCard = cardInfo;
+                                break;
                             }
                         }
-                        
+                        price += Mathf.RoundToInt(rightCard.cost + (rightCard.cost * 0.2f));
+                        continue;
                     }
-                
-
-                  
+                    else
+                    {
+                        isRight = false;
+                    }
+                }
+                else
+                {
+                    CardInfoObject rightCard = null;
+                    foreach (CardInfoObject cardInfo in container.CardInfo)
+                    {
+                        if (cardInfo.name.Equals(Components[i].name))
+                        {
+                            rightCard = cardInfo;
+                            break;
+                        }
+                    }
+                    print(Components[i].name + "  " + rightCard.name + "  " + requaredComponents[i]);
+                    price += Mathf.RoundToInt(rightCard.cost + (rightCard.cost * 0.2f));
+                    continue;
+                }
             }
+
             if (isRight)
             {
                 PlayerPrefs.SetInt("Cash", PlayerPrefs.GetInt("Cash") + price);
@@ -127,8 +86,6 @@ public class SellController : MonoBehaviour
             }
             else
             {
-                PlayerPrefs.SetInt("Cash", PlayerPrefs.GetInt("Cash") + price);
-                uiController.OnCashValueChanged();
                 Destroy(PC.gameObject);
                 voice.PlayOneShot(bad[Random.Range(0, bad.Length)]);
             }
@@ -136,19 +93,94 @@ public class SellController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
-        print(other.name);
-        
-        if (other.CompareTag("PC"))
+        if (collider.CompareTag("Box"))
         {
-            BuildPC pc = other.GetComponent<BuildPC>();
+            hasBox = true;
+        }
+        if (collider.CompareTag("Core"))
+        {
+            Components[0] = collider.gameObject;
+        }
+        if (collider.CompareTag("Videocard"))
+        {
+            Components[1] = collider.gameObject;
+        }
+        if (collider.CompareTag("MotherBoard"))
+        {
+            Components[2] = collider.gameObject;
+        }
+        if (collider.CompareTag("HardDrive"))
+        {
+            Components[3] = collider.gameObject;
+        }
+        if (collider.CompareTag("ComputerCase"))
+        {
+            Components[4] = collider.gameObject;
+        }
+        if (collider.CompareTag("RAM"))
+        {
+            Components[5] = collider.gameObject;
+        }
+        if (collider.CompareTag("Cooler"))
+        {
+            Components[6] = collider.gameObject;
+        }
+        if (collider.CompareTag("Power"))
+        {
+            Components[7] = collider.gameObject;
+        }
+
+
+        print(collider.name);
+
+        if (collider.CompareTag("PC"))
+        {
+            BuildPC pc = collider.GetComponent<BuildPC>();
             PC = pc;
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider collider)
     {
-        if (other.CompareTag("PC"))
+        if (collider.CompareTag("Box"))
+        {
+            hasBox = false;
+        }
+        if (collider.CompareTag("Core"))
+        {
+            Components[0] = null;
+        }
+        if (collider.CompareTag("Videocard"))
+        {
+            Components[1] = null;
+        }
+        if (collider.CompareTag("MotherBoard"))
+        {
+            Components[2] = null;
+        }
+        if (collider.CompareTag("HardDrive"))
+        {
+            Components[3] = null;
+        }
+        if (collider.CompareTag("ComputerCase"))
+        {
+            Components[4] = null;
+        }
+        if (collider.CompareTag("RAM"))
+        {
+            Components[5] = null;
+        }
+        if (collider.CompareTag("Cooler"))
+        {
+            Components[6] = null;
+        }
+        if (collider.CompareTag("Power"))
+        {
+            Components[7] = null;
+        }
+
+        if (collider.CompareTag("PC"))
         {
             PC = null;
         }

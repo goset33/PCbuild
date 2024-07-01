@@ -992,16 +992,10 @@ MonoBehaviour:
   container: {fileID: 165404012}
   uiController: {fileID: 1731150026}
   mailController: {fileID: 1805672206}
+  buildController: {fileID: 1396626950}
   voice: {fileID: 2045236173}
   hasBox: 0
-  Components:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  PC: {fileID: 0}
   requaredComponents:
   - 
   - 
@@ -1010,6 +1004,16 @@ MonoBehaviour:
   - 
   - 
   - 
+  - 
+  Components:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   good:
   - {fileID: 8300000, guid: e18927ac23c2f0f4293a56951948a172, type: 3}
   - {fileID: 8300000, guid: 5990d65559fd9e9449db2ec338ba687b, type: 3}
@@ -1048,8 +1052,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.99999994, y: 1, z: 0.99999994}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.2967026, y: 1.5023872, z: 3.0495818}
+  m_Center: {x: -0.104191765, y: 0.25119454, z: -0.35524583}
 --- !u!1001 &438751222
 PrefabInstance:
   m_ObjectHideFlags: 0
