@@ -11,7 +11,7 @@ public class BaseMinigame : MonoBehaviour
 
     virtual public void StartMinigame()
     {
-        _prevCamera = Camera.main;
+        _prevCamera = Camera.current;
         
         _prevCamera.enabled = false;
         newCamera.enabled = true;
@@ -27,7 +27,6 @@ public class BaseMinigame : MonoBehaviour
 
     virtual public void EndMinigame()
     {
-        Debug.Log(gameObject.name);
         Camera.current.enabled = false;
         _prevCamera.enabled=true;
         Camera.SetupCurrent(_prevCamera);

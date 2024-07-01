@@ -25,6 +25,11 @@ public class BuildController : MonoBehaviour
         requriedNames = i;
     }
 
+    public void EnableBoxCollider()
+    {
+        GetComponent<Collider>().enabled = true;
+    }
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -54,10 +59,11 @@ public class BuildController : MonoBehaviour
 
                 buildPC.componets.Clear();
                 PCComponets prefab = new PCComponets();
-                for (int j = 0; j < 8; j++)
+                for (int j = 0; j < 7; j++)
                 {
                     buildPC.componets.Add(prefab);
                 }
+
 
                 for (int i = 0; i < colliders.Count; i++)
                 {
@@ -103,14 +109,22 @@ public class BuildController : MonoBehaviour
                         prefab.methodOnConnected = "StartFlashMinigame";
                         buildPC.componets[6] = prefab;
                     }
-                    colliders[i].GetComponent<Rigidbody>().isKinematic = true;
-                    colliders[i].GetComponent<DragObject>().enabled = false;
+                    //colliders[i].gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                    //colliders[i].GetComponent<DragObject>().enabled = false;
                     colliders[i].GetComponent<BuildComponentPC>().enabled = true;
+                    Destroy(colliders[i].GetComponent<Rigidbody>());
+                    Destroy(colliders[i].GetComponent<DragObject>());
                     colliders[i].gameObject.SetActive(false);
+                    colliders[i].transform.SetParent(buildPC.startTransform);
+                    //colliders[i].transform.position = Vector3.zero;
+                    colliders[i].transform.localPosition = Vector3.zero;
+                    colliders[i].transform.localRotation = Quaternion.identity;
                     print(9);
                 }
                 buildPC.gameObject.SetActive(true);
+                GetComponent<Collider>().enabled = false;
                 buildPC.StartMinigame();
+                buildPC.onEndMiniGame.AddListener(EnableBoxCollider);
             }
         }
     }

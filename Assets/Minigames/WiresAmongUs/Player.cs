@@ -16,8 +16,11 @@ public class Player : BaseMinigame
     }
     public override void EndMinigame()
     {
-        base.EndMinigame();
         wires.SetActive(false);
+        Camera.main.enabled = true;
+        Camera.SetupCurrent(Camera.main);
+        newCamera.enabled = false;
+        onEndMiniGame.Invoke();
     }
 
     void Update()

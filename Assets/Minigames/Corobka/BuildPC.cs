@@ -39,21 +39,28 @@ public class BuildPC : BaseMinigame
 
     public override void StartMinigame()
     {
-        base.StartMinigame();
-        if(casePC == null) { onMissedCasePC.Invoke(); return; }
-
-        if(_currentComponent != null)
-        {
-            Destroy(_currentComponent);
-        }
-       ReturnCurrentProgress();
-       Camera.SetupCurrent(Camera.main);
-       Camera.main.enabled = true;
+        _prevCamera = Camera.current;
+        newCamera.enabled = true;
+        Camera.SetupCurrent(newCamera);
+        _started = true;
+        onStartMiniGame.Invoke();
+        // if(casePC == null) { onMissedCasePC.Invoke(); return; }
+        ReturnCurrentProgress();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public override void EndMinigame()
     {
-        base.EndMinigame();
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        //newCamera.enabled = false;
+        Camera.main.enabled = true;
+        Camera.SetupCurrent(FindObjectOfType<FirstPersonLook>().GetComponent<Camera>());
+        FindObjectOfType<FirstPersonLook>().GetComponent<Camera>().enabled = true;
+        gameObject.AddComponent<DragObject>();
+        gameObject.AddComponent<Rigidbody>();
     }
 
     public void IncrementProgress()

@@ -39,7 +39,15 @@ public class PaintingTermopasta : BaseMinigame
         _completeDrawingPixelsCount = (int)Mathf.Pow(_textureSize, 2);
     }
 
-    
+    public override void EndMinigame()
+    {
+        base.EndMinigame();
+        Camera.current.enabled = false;
+        _prevCamera.enabled = false;
+        Camera.main.enabled = true;
+        Camera.SetupCurrent(Camera.main);
+
+    }
     // Update is called once per frame
     void Update()
     {

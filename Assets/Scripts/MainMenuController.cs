@@ -13,6 +13,21 @@ public class MainMenuController : MonoBehaviour
 
     private float timer;
     private float maxTime;
+    public GameObject registrationGameObject;
+    public TextMeshProUGUI textMeshPro;
+
+
+    private void Awake()
+    {
+        if(!PlayerPrefs.HasKey("CompanyName"))
+        {
+            registrationGameObject.SetActive(true);
+        }
+        else
+        {
+            registrationGameObject.SetActive(false);
+        }
+    }
 
     private void Update()
     {
@@ -66,5 +81,11 @@ public class MainMenuController : MonoBehaviour
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    public void SetNewCompanyName()
+    {
+        PlayerPrefs.SetString("CompanyName", textMeshPro.text);
+        registrationGameObject.SetActive(false);
     }
 }

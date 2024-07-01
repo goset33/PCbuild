@@ -22,12 +22,12 @@ public class BuildComponentPC : MonoBehaviour, IBuild
     public AudioSource audioSource;
 
     private Vector3 _startPos;
-    private Quaternion _startRot;
+    private Vector3 _startRot;
 
     private void Start()
     {
         _startPos = transform.position;
-        _startRot = transform.rotation;
+        _startRot = transform.rotation.eulerAngles;
 
 
     }
@@ -40,11 +40,11 @@ public class BuildComponentPC : MonoBehaviour, IBuild
     public void UnDragged()
     {
         transform.position = _startPos;
-        transform.localRotation = _startRot;
+        transform.localRotation = Quaternion.Euler(_startRot);
     }
     public void Connected()
     {
-        transform.localRotation = _startRot;
+        transform.localRotation = Quaternion.Euler(_startRot);
     }
 
     public bool IsConnected()
